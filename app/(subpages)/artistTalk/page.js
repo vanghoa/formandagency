@@ -18,10 +18,17 @@ export default function subpage() {
                 mwidth={800}
                 fontsz={'2em'}
                 justify={'flex-start'}
+                class_="title"
             ></ServerRender>
             <br></br>
             <ServerRender text={txt} mwidth={1000}></ServerRender>
-            <RightPanel lead={12} elem={'section .flex'}></RightPanel>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <RightPanel></RightPanel>
         </>
     );
 }

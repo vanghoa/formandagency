@@ -34,8 +34,8 @@ let nav_unit = nav_fontsz / (20 / 1.4);
                 interact.modifiers.snap({
                     targets: [
                         interact.snappers.grid({
-                            x: nav_handle_size,
-                            y: nav_handle_size,
+                            x: 25,
+                            y: 25,
                         }),
                     ],
                     range: Infinity,

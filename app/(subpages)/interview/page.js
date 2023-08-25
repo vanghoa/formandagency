@@ -1,6 +1,9 @@
 import ServerRender from '@/components/ServerRender';
 import RightPanel from '@/components/RightPanel';
 
+export const dynamic = 'force-static';
+export const fetchCache = 'force-cache';
+
 export default function subpage() {
     let title = `“Let the outside in”: A conversation between Brandon Tay and Bogna Konior`;
     let bogna = [],
@@ -160,6 +163,7 @@ export default function subpage() {
                 mwidth={800}
                 fontsz={'2em'}
                 justify={'flex-start'}
+                class_="title"
             ></ServerRender>
             <br></br>
             <br></br>
@@ -181,7 +185,13 @@ export default function subpage() {
                     <br></br>
                 </>
             ))}
-            <RightPanel lead={12} elem={'section .flex'}></RightPanel>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <RightPanel></RightPanel>
         </>
     );
 }

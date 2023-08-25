@@ -929,7 +929,9 @@ async function calculateLigature(elem) {
                 textconsole[count] += string;
                 let char = list[string];
                 if (char == undefined) {
-                    console.log(string);
+                    //console.log(string);
+                    baretxt += string;
+                    continue;
                 }
                 let kern = 0;
                 let kernr = 0;

@@ -1,13 +1,13 @@
 import RightPanel from '@/components/RightPanel';
 import ServerRender from '@/components/ServerRender';
-import Image from 'next/image';
+import ImageAbout from '@/components/ImageAbout';
 import OutLink from '@/components/OutLink';
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 export default async function Subpage() {
-    const title = `FORM AND AGENCY`;
+    const title = `Form And Agency`;
     const txt1 = `A solo exhibition by Brandon Tay
     Exhibition Dates: 26 August – 1 October 2023
     Artist Talk: 16th September 2023
@@ -50,46 +50,35 @@ export default async function Subpage() {
 `;
     return (
         <>
+            <br></br>
             <ServerRender
                 text={title}
                 mwidth={800}
                 fontsz={'2em'}
                 justify={'flex-start'}
+                class_="title"
             ></ServerRender>
             <br></br>
             <ServerRender text={txt1} mwidth={800}></ServerRender>
-            <div className="image">
-                <Image
-                    src="/image/NAC_logo.png"
-                    alt="bip"
-                    width={0}
-                    height={0}
-                    sizes="15vmax"
-                    unoptimized={true}
-                ></Image>
-            </div>
+            <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
             <br></br>
             <ServerRender
                 text={'ABOUT THE ARTIST'}
                 mwidth={1000}
+                justify="flex-start"
             ></ServerRender>
-            <div
-                className="image"
-                style={{
-                    height: '200px',
-                }}
-            >
-                <Image
-                    src="/image/brandontay.png"
-                    alt="bip"
-                    width={0}
-                    height={0}
-                    sizes="15vmax"
-                    unoptimized={true}
-                ></Image>
-            </div>
+            <ImageAbout
+                img={'brandontay.jpg'}
+                size={300}
+                wrappersz={1000}
+                justify="flex-start"
+            ></ImageAbout>
             <br></br>
-            <ServerRender text={txt2} mwidth={1000}></ServerRender>
+            <ServerRender
+                text={txt2}
+                mwidth={1000}
+                justify="flex-start"
+            ></ServerRender>
             <a href="http://www.brandontay.net/" target="_blank"></a>
             <a
                 href="https://www.yeoworkshop.com/artists/59-brandon-tay/"
@@ -103,8 +92,14 @@ export default async function Subpage() {
             <OutLink link={'https://dariusou.work/'}></OutLink>
             <ServerRender text={tone} mwidth={700}></ServerRender>
             <OutLink link={'https://tonewentities.com/'}></OutLink>
-            <ServerRender text={txt3} mwidth={500}></ServerRender>
+            <ServerRender text={txt3} mwidth={700}></ServerRender>
             <OutLink link={'www.yeoworkshop.com'}></OutLink>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <RightPanel></RightPanel>
         </>
     );
