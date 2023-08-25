@@ -267,6 +267,19 @@ section * {
     line-height: 1.5em;
 }
 
+section #landingvideo {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: relative;
+    pointer-events: none;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+}
+
 @media only screen and (max-width: 600px) {
     :root {
         --nav_left_max: 0px;
