@@ -7,6 +7,9 @@ const nav_handle_size = parseInt(getprop('--nav_handle_size'));
 const nav_sublinks = $$('.sublink');
 const nav_trans = $('#ontransitionend');
 const nav_modelonclick = $('#modelonclick');
+const section = $('section');
+const section_style = section.style;
+const section_setprop = section_style.setProperty.bind(section_style);
 let ascdesarr = $$(':is(.asc, .des)');
 nav_modelonclick.onclick = modeldrop;
 nav_trans.ontransitionend = async function () {
@@ -18,8 +21,9 @@ nav_trans.ontransitionend = async function () {
 // fontsz
 let nav_fontsz = parseFloat(getComputedStyle(nav).fontSize);
 let nav_padding =
-    parseFloat(getComputedStyle(nav).getPropertyValue('--nav_padding')) *
-    nav_fontsz;
+    parseFloat(
+        getComputedStyle(document.body).getPropertyValue('--nav_padding')
+    ) * nav_fontsz;
 let nav_unit = nav_fontsz / (20 / 1.4);
 
 //nav reisze

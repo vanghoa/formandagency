@@ -1,11 +1,13 @@
 import RightPanel from '@/components/RightPanel';
 import ServerRender from '@/components/ServerRender';
 import Image from 'next/image';
+import OutLink from '@/components/OutLink';
 
-//export const dynamic = 'force-static';
-//export const fetchCache = 'force-cache';
+export const dynamic = 'force-static';
+export const fetchCache = 'force-cache';
 
 export default async function Subpage() {
+    const title = `FORM AND AGENCY`;
     const txt1 = `A solo exhibition by Brandon Tay
     Exhibition Dates: 26 August – 1 October 2023
     Artist Talk: 16th September 2023
@@ -28,38 +30,34 @@ export default async function Subpage() {
     In his practice, he complicates distinctions between the tangible and incorporeal, both in composition and well as subject matter, often looking into thematics surrounding the relationships between history and futurity, digital materiality, and contemporary philosophies.  Brandon views digital materials as irreducible components that combine dynamically to create a more complex whole. Working with diverse components, whether fragments of 3D geometry, prompt tokens or 3D avatars of human beings, he combines these with out-of-context factors — such as doom-scrolling induced trance states, automatic writing, game physics and the likes — to simulate something that feels larger than its parts in unpredictable ways.
 
     As a collaborator and individually, his work has been shown at Art Dubai, tanzhaus nrw Düsseldorf, Kyoto Dance Experiment, Singapore International Festival of the Arts, M1 Fringe Festival among others. His works are also in private and public collections such as the Australian Centre for Moving Images (ACMI), Melbourne/Naarm.
-
-    http://www.brandontay.net/
-    https://www.yeoworkshop.com/artists/59-brandon-tay/
-
-    ABOUT THE COLLABORATORS
+`;
+    const abtcolab = `ABOUT THE COLLABORATORS
 
     Rafi Abdullah (b. 1991) is a curator based out of Singapore with close to a decade of experience working in varying capacities across cultural institutions and museums (Indian Heritage Centre, Institute of Contemporary Arts Singapore, The Private Museum) and art galleries (Wetterling Teo Gallery, Hatch Art Project) in Singapore. He was a selected participant in the curatorial workshops, Staging and the Exhibition (2018) hosted by Institute of Contemporary Arts (ICA) Singapore in partnership with the Department of Visual Culture, Goldsmiths University of London; as well as the Workshops for Emerging Arts Professionals (2020) hosted by Para Site, Hong Kong. He has also written for several artist catalogues and books, as well as for/in journals, platforms, and institutions such as Yavuz Gallery, Sullivan+Strumpf, National Gallery Singapore, and So Far. Most recently, he was the co-curator of the digital exhibition Many Beliefs, One Future 2.0 (2022), and curator for the digital billboard art festival Crossroads (2022), and the exhibition Poor Imagination (2019).
-
-    http://www.rafiabdullah.com/
-
+`;
+    const bogna = `
     Bogna Konior is Assistant Professor at the Interactive Media Arts department, and co-director of AI & Culture Center at NYU Shanghai. In 2023, she is a Research Fellow in the Antikythera Program on Speculative Computation at the Berggruen Institute, and a mentor in the Synthetic Intelligence program at Medialab-Matadero Madrid. Her work on digital culture, philosophy of new media, and posthumanism has been presented internationally, recently including the Cambridge Leverhulme Centre for the Future of Intelligence, ZKM | Center for Art and Media, e-flux, and the Ljubljana Biennale. With Benjamin Bratton and Anna Greenspan, she is the co-editor of Machine Decision is Not Final: China and the History and Future of AI, forthcoming from Urbanomic. She is working on two projects concerned with long-term trajectories of technological development. Her current academic project is on Polish science fiction writer and philosopher, Stanislaw Lem, and his neglected contribution to the theory of biotechnological evolution of autonomous reason. She is also working on a multimedia research project on female Catholic mysticism as an early form of cyberfeminism and a predictor of machine erotics, nonhuman personhood, and artificial reproduction.
-
-    https://www.bognamk.com/
-
+`;
+    const darius = `
     Darius Ou (b. 1993) is a graphic designer based in Singapore. The eponymous studio has worked with local institutions like Asian Film Archive, DesignSingapore Council, NTU CCA Singapore, as well as internationally with Kaleidoscope, Tai Kwun Contemporary and 89plus, amongst others. The studio’s works have been exhibited in the 13th Golden Bee Moscow Biennale, and the 28th Brno Biennial of Graphic Design; selected by Art Directors' Club New York (YG 19 Finalist), ADC Switzerland and Society of Typographic Arts Chicago (STA 100); and shown in Studio 13/16 (Centre Pompidou), CCA Derry~Londonderry, and Institute of Contemporary Arts Singapore.
-
-    https://dariusou.work/
-
+`;
+    const tone = `
     TO NEW ENTITIES is an art and creative collective that builds media worlds. They believe in telling character-driven stories that emphasise and celebrate imagination and creativity in an increasingly complex and intertwined world. They operate through curation, digital environment and exhibition making, digital and tech support for artists, film programming, the production of art, and more. They have received coverage by media platforms both locally and internationally such as Female Magazine, Mens Folio, and Stir World. Most recently, they curated and organised Crossroads (2022) the first digital billboard art festival in Singapore, the exhibition Contemporary Gestures (2022) representing Singapore on international platform The Upside Space. They were also selected for participation in the independent art book fair SPRINT Milano (2022) in Spazzio Maiocchi, Milan; the inaugural BoluevArt Festival, Art in Space, Dubai; and the Rockaway Art Festival, hosted by Rhizome and Do Not Research at The Locker Room, New York.
-
-    https://tonewentities.com/
-    `;
-    const txt3 = `Yeo Workshop is a leading art gallery based in Gillman Barracks, Singapore since 2013. It shows innovative practices of contemporary artists. Covering a multi-disciplinary approach, the gallery defines itself by its progressive engagements.
-
-    www.yeoworkshop.com
-    `;
+`;
+    const txt3 = `ABOUT THE GALLERY
+    
+    Yeo Workshop is a leading art gallery based in Gillman Barracks, Singapore since 2013. It shows innovative practices of contemporary artists. Covering a multi-disciplinary approach, the gallery defines itself by its progressive engagements.
+`;
     return (
         <>
-            <div>
-                <h1>FORM AND AGENCY</h1>
-            </div>
-            <ServerRender text={txt1}></ServerRender>
+            <ServerRender
+                text={title}
+                mwidth={800}
+                fontsz={'2em'}
+                justify={'flex-start'}
+            ></ServerRender>
+            <br></br>
+            <ServerRender text={txt1} mwidth={800}></ServerRender>
             <div className="image">
                 <Image
                     src="/image/NAC_logo.png"
@@ -71,9 +69,10 @@ export default async function Subpage() {
                 ></Image>
             </div>
             <br></br>
-            <div>
-                <h1>ABOUT THE ARTIST</h1>
-            </div>
+            <ServerRender
+                text={'ABOUT THE ARTIST'}
+                mwidth={1000}
+            ></ServerRender>
             <div
                 className="image"
                 style={{
@@ -90,11 +89,22 @@ export default async function Subpage() {
                 ></Image>
             </div>
             <br></br>
-            <ServerRender text={txt2}></ServerRender>
-            <div>
-                <h1>ABOUT THE GALLERY</h1>
-            </div>
-            <ServerRender text={txt3}></ServerRender>
+            <ServerRender text={txt2} mwidth={1000}></ServerRender>
+            <a href="http://www.brandontay.net/" target="_blank"></a>
+            <a
+                href="https://www.yeoworkshop.com/artists/59-brandon-tay/"
+                target="_blank"
+            ></a>
+            <ServerRender text={abtcolab} mwidth={700}></ServerRender>
+            <OutLink link={'http://www.rafiabdullah.com/'}></OutLink>
+            <ServerRender text={bogna} mwidth={700}></ServerRender>
+            <OutLink link={'https://www.bognamk.com/'}></OutLink>
+            <ServerRender text={darius} mwidth={700}></ServerRender>
+            <OutLink link={'https://dariusou.work/'}></OutLink>
+            <ServerRender text={tone} mwidth={700}></ServerRender>
+            <OutLink link={'https://tonewentities.com/'}></OutLink>
+            <ServerRender text={txt3} mwidth={500}></ServerRender>
+            <OutLink link={'www.yeoworkshop.com'}></OutLink>
             <RightPanel></RightPanel>
         </>
     );

@@ -250,8 +250,8 @@ let posarr = [
     },
 ];
 
-// debounce
-const debounce = {
+// debounceLeft
+const debounceLeft = {
     first: true,
     timeout: null,
     _: function () {
@@ -286,14 +286,55 @@ const debounce = {
     },
 };
 
-// resizeobserver
-let prevWidth = 0;
-const resizeObserver = new ResizeObserver((entries) => {
+// debounceRight
+const debounceRight = {
+    first: true,
+    timeout: null,
+    size: [],
+    _: function () {
+        let this_ = this;
+        if (this.first) {
+            this_.size = [];
+            let allwrappers = $$('.wrapper');
+            allwrappers.forEach((elem) => {
+                elem.classList.add('anim');
+                elem.children[1].classList.remove('lig');
+                this_.size.push(elem.getBoundingClientRect().width);
+            });
+            this.first = false;
+        }
+
+        if (this.timeout !== null) {
+            clearTimeout(this.timeout);
+        }
+        this.timeout = setTimeout(function () {
+            this_.timeout = null;
+            this_.first = true;
+            rightPanel();
+        }, 300);
+    },
+};
+
+// resizeobserverLeft
+let prevWidthLeft = 0;
+const resizeObserverLeft = new ResizeObserver((entries) => {
     for (const entry of entries) {
         const width = entry.borderBoxSize?.[0].inlineSize;
-        if (typeof width === 'number' && width !== prevWidth) {
-            prevWidth = width;
-            debounce._();
+        if (typeof width === 'number' && width !== prevWidthLeft) {
+            prevWidthLeft = width;
+            debounceLeft._();
+        }
+    }
+});
+
+// resizeobserverRight
+let prevWidthRight = 0;
+const resizeObserverRight = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+        const width = entry.borderBoxSize?.[0].inlineSize;
+        if (typeof width === 'number' && width !== prevWidthRight) {
+            prevWidthRight = width;
+            debounceRight._();
         }
     }
 });
@@ -301,8 +342,9 @@ const resizeObserver = new ResizeObserver((entries) => {
 onresize = () => {
     nav_fontsz = parseFloat(getComputedStyle(nav).fontSize);
     nav_padding =
-        parseFloat(getComputedStyle(nav).getPropertyValue('--nav_padding')) *
-        nav_fontsz;
+        parseFloat(
+            getComputedStyle(document.body).getPropertyValue('--nav_padding')
+        ) * nav_fontsz;
     nav_unit = nav_fontsz / (20 / 1.4);
 };
 
@@ -481,6 +523,7 @@ fetch(`${window.location.origin}/${fonturl}`)
         list.lowercase('<', 63);
         list.lowercase('~', 56);
         list.lowercase('^', 42);
+        list.lowercase('|', 35, [3], [3]);
         //cap
         list.cap('A', 63, [9], [5]);
         list.cap('B', 63, [2]);
@@ -531,9 +574,12 @@ fetch(`${window.location.origin}/${fonturl}`)
         readyToExecute();
     });
 
+setprop('--scrollbarw', getScrollbarWidth() + 'px');
 function readyToExecute() {
     if (++ready == 2) {
         readyToExecute_nav();
+        setleading(28, section);
+        rightPanel(false);
     }
 }
 
@@ -546,7 +592,29 @@ function readyToExecute_nav() {
         count++;
     });
     console.log(posarr);
-    resizeObserver.observe(nav);
+    resizeObserverLeft.observe(nav);
+    resizeObserverRight.observe(section);
+}
+
+async function rightPanel(chk = true) {
+    if (ready >= 2) {
+        //console.log('bip');
+        await wait(100);
+        $$('.wrapper').forEach((elem, index) => {
+            if (debounceRight.size.length > 0 && chk) {
+                if (
+                    elem.getBoundingClientRect().width !=
+                    debounceRight.size[index]
+                ) {
+                    calculateLigature(elem);
+                } else {
+                    elem.children[1].classList.add('lig');
+                }
+            } else {
+                calculateLigature(elem);
+            }
+        });
+    }
 }
 
 function nav_resize_handle() {
@@ -604,7 +672,7 @@ function nav_resize_handle() {
         //let translateby = outdes[0] + tongtrans - indes;
         posarr[
             index
-        ].elem.style.left = `calc(${translateby} * var(--nav_unit))`;
+        ].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit)))`;
         if (index == nav_numth + 1) {
             nav_tongtrans = tongtrans;
         }
@@ -675,7 +743,7 @@ function nav_resize_handle() {
 function nav_resize_small() {
     nav.classList.add('small');
     for (let i = 1; i < posarr.length; i++) {
-        posarr[i].elem.style.left = '';
+        posarr[i].elem.style.transform = '';
     }
 }
 
@@ -770,7 +838,7 @@ async function modeldrop() {
         let translateby = inasc - outasc[0] + nav_tongtrans;
         posarr[
             nav_numth + 1
-        ].elem.style.left = `calc(${translateby} * var(--nav_unit))`;
+        ].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit)))`;
         posarr[nav_numth + 1]['ascspan'][outasc[1]].classList.add('alt');
         //
         span2.classList.add('show');
@@ -786,11 +854,13 @@ async function modeldrop() {
     //
 }
 
-async function calculateLigature() {
-    await wait(200);
-    div.innerHTML = ''; //
+async function calculateLigature(elem) {
+    //await wait(200);
+    let div = elem.children[1];
+    div.classList.add('lig');
+    let divx = elem.children[0];
 
-    let parr = divx.querySelectorAll('p'); //
+    let parr = divx.children; //
     let up_arr_prev = [];
     let down_arr_span_prev = [];
     let render_arr_arr = [];
@@ -830,7 +900,6 @@ async function calculateLigature() {
         down_arr_tong.push((down_arr = []));
 
         render_arr_create();
-
         //console.log(textconsole);
 
         render_arr_arr.push(render_arr);
@@ -859,6 +928,9 @@ async function calculateLigature() {
                 let string = textContent[i];
                 textconsole[count] += string;
                 let char = list[string];
+                if (char == undefined) {
+                    console.log(string);
+                }
                 let kern = 0;
                 let kernr = 0;
                 // kern
@@ -971,11 +1043,13 @@ async function calculateLigature() {
             //spacing below
             let descenderlength = down_arr_span_tong.length;
             if (i == parr.length - 1) {
+                /*
                 let span_ = $create('span');
                 span_.innerHTML = 'a';
                 span_.style.visibility = 'hidden';
                 span_.wght = 'lineheightkeep';
-                render_arr[count].push($create('br'), span_);
+                */
+                render_arr[count].push($create('br'));
                 descenderlength--;
             }
 
@@ -1026,10 +1100,11 @@ async function calculateLigature() {
     }
 
     // fully render
+    div.innerHTML = ''; //
     for (let x = 0; x < render_arr_arr.length; x++) {
         let p_ = $create('p');
         //spacing above
-        if (x == 0 || render_arr_arr[x][0].length == 0) {
+        if (render_arr_arr[x][0].length == 0) {
             p_.append($create('br'));
         }
         for (let i = 0; i < render_arr_arr[x].length; i++) {
@@ -1056,19 +1131,68 @@ async function calculateLigature() {
 
     // animation
     await wait(100);
-    let allspan = viewer.querySelectorAll('span');
-    viewer.classList.add('anim');
-    allspan[0].ontransitionend = (event) => {
-        viewer.classList.remove('anim');
-        allspan[0].ontransitionend = null;
-    };
-    for (let i = 0; i < allspan.length; i++) {
-        allspan[i].classList.add(allspan[i].wght);
+    let allspan = elem.querySelectorAll('span');
+    if (allspan.length > 0) {
+        elem.classList.add('anim');
+        allspan[0].ontransitionend = (event) => {
+            elem.classList.remove('anim');
+            allspan[0].ontransitionend = null;
+        };
+        for (let i = 0; i < allspan.length; i++) {
+            allspan[i].classList.add(allspan[i].wght);
+        }
     }
     //
+    /*
     if (resizecheck) {
-        resizeObserver.observe(divx);
+        resizeObserverLeft.observe(divx);
         resizecheck = false;
+    }
+    */
+}
+
+function setleading(vl, elem) {
+    const _style = elem.style;
+    const _setprop = _style.setProperty.bind(_style);
+    let leading = lh(vl);
+    _setprop('--lh', leading);
+    _setprop('--lig', vl);
+    _setprop('--lig_cap', ligcap(leading));
+    _setprop('--lig_des', ligdes(leading));
+    function lh(x) {
+        return (
+            0.3 + ((Math.min(88, Math.max(x, 8)) - 8) / (88 - 8)) * (1 - 0.3)
+        );
+    }
+    function ligdes(input) {
+        if (input <= 0.3) {
+            return 0;
+        }
+        const [v, o] = [
+            [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+            [1, 14, 27, 41, 55, 68, 82, 97],
+        ];
+        const c = Math.max(v[0], Math.min(input, v[v.length - 1]));
+        const i = v.findIndex((val) => val >= c);
+        return i === -1
+            ? o[o.length - 1]
+            : o[i - 1] +
+                  ((c - v[i - 1]) / (v[i] - v[i - 1])) * (o[i] - o[i - 1]);
+    }
+    function ligcap(input) {
+        if (input <= 0.3) {
+            return 0;
+        }
+        const [v, o] = [
+            [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+            [2, 13, 24, 35, 47, 57, 69, 80],
+        ];
+        const c = Math.max(v[0], Math.min(input, v[v.length - 1]));
+        const i = v.findIndex((val) => val >= c);
+        return i === -1
+            ? o[o.length - 1]
+            : o[i - 1] +
+                  ((c - v[i - 1]) / (v[i] - v[i - 1])) * (o[i] - o[i - 1]);
     }
 }
 
@@ -1077,4 +1201,24 @@ function wait(delay) {
 }
 function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function getScrollbarWidth() {
+    // Creating invisible container
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll'; // forcing scrollbar to appear
+    outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+    document.body.appendChild(outer);
+
+    // Creating inner element and placing it in the container
+    const inner = document.createElement('div');
+    outer.appendChild(inner);
+
+    // Calculating difference between container's full width and the child width
+    const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+
+    // Removing temporary elements from the DOM
+    outer.parentNode.removeChild(outer);
+
+    return scrollbarWidth;
 }

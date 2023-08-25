@@ -1,24 +1,17 @@
 'use client';
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 
-const RightPanel = () => {
-    const containerRef = useRef(null);
+const RightPanel = ({ lead = 0, elem = 0 }) => {
     useEffect(() => {
-        const containerElement = containerRef.current;
-        console.log(containerElement);
-        /*
-            const resizeObserver = new ResizeObserver((entries) => {
-                if (onWidthChange) {
-                    console.log(containerElement, nav);
-                }
-            });
-
-            resizeObserver.observe(containerElement);
-        */
+        //debounceRight.size = [];
+        if (lead != 0) {
+            setleading(lead, $(elem));
+        }
+        rightPanel(false);
         return () => {
             //resizeObserver.unobserve(containerElement);
         };
-    }, [containerRef.current]);
+    }, []);
     return <></>;
 };
 
