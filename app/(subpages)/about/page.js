@@ -1,5 +1,3 @@
-import RightPanel from '@/components/RightPanel';
-
 export default function Subpage() {
     return (
         <div>
@@ -31,7 +29,6 @@ export default function Subpage() {
             adversarial neural networks, complex systems in nature, blackboxing,
             cybernetic decision trees, and reinforcement learning. To-gether,
             the networked sculptures transform the gallery space into an
-            <RightPanel></RightPanel>
         </div>
     );
 }

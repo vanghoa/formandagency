@@ -248,16 +248,21 @@ section {
     top: 0;
     flex: 1;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     z-index: 0;
     border: solid 2px var(--purple);
     font-size: 0.8em;
-    overflow-x: hidden;
 }
 
 /* */
-section * {
+section > div {
     padding: 0.8rem;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+}
+
+section * {
     color: var(--white);
     line-height: 1.5em;
 }
