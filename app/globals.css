@@ -254,6 +254,10 @@ section {
     font-size: 0.8em;
 }
 
+h1 {
+    font-size: 1em;
+}
+
 /* */
 section > div {
     padding: 0.8rem;
@@ -278,6 +282,40 @@ section #landingvideo {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0;
+}
+
+section .wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+section .wrapper > div {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    padding-right: 1px;
+}
+
+section .wrapper .backend {
+    position: absolute;
+    /*
+    visibility: hidden;
+    */
+}
+
+section .image {
+    position: relative;
+    height: 70px;
+}
+
+section .image img {
+    height: 100%;
+    width: auto;
 }
 
 @media only screen and (max-width: 600px) {

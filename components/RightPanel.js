@@ -16,7 +16,7 @@ const RightPanel = () => {
             resizeObserver.observe(containerElement);
         */
         return () => {
-            resizeObserver.unobserve(containerElement);
+            //resizeObserver.unobserve(containerElement);
         };
     }, [containerRef.current]);
     return <></>;

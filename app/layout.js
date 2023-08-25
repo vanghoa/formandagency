@@ -19,10 +19,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <Script src="/script/interact.min.js" />
-            <Script src="/script/opentype.js" />
             <Script src="/script/layout.js" />
             <body className={asabovesobelow.variable}>
+                <Script
+                    src="/script/interact.min.js"
+                    strategy="beforeInteractive"
+                />
+                <Script
+                    src="/script/opentype.js"
+                    strategy="beforeInteractive"
+                />
+                <Script
+                    src="/script/beforeinteractive.js"
+                    strategy="beforeInteractive"
+                />
                 <main>
                     <nav>
                         <div id="nav_handle"></div>
