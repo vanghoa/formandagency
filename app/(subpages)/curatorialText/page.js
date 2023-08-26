@@ -90,7 +90,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             <ServerRender
                 text={title}
                 mwidth={800}
-                fontsz={'2em'}
+                fontsz={'1.8em'}
                 justify={'flex-start'}
                 class_="title"
             ></ServerRender>

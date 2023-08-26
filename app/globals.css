@@ -133,6 +133,10 @@ nav .sublink {
     transition: transform 0.5s;
 }
 
+nav .underline span:is(:first-child, :nth-child(2)) {
+    text-decoration: underline;
+}
+
 nav .sublink > * {
     cursor: pointer;
     position: relative;
@@ -263,6 +267,7 @@ h1 {
 section > div {
     padding: var(--nav_padding);
     overflow-y: auto;
+    overflow-x: hidden;
     width: 100%;
     height: 100%;
 }

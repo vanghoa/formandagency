@@ -30,6 +30,7 @@ export default function ImageAbout({
                             width: `${size}px`,
                             maxWidth: '100%',
                         }}
+                        priority={true}
                     ></Image>
                 </div>
             </div>

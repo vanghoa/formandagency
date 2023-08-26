@@ -16,12 +16,12 @@ export default function subpage() {
             <ServerRender
                 text={title}
                 mwidth={800}
-                fontsz={'2em'}
+                fontsz={'1.8em'}
                 justify={'flex-start'}
                 class_="title"
             ></ServerRender>
             <br></br>
-            <ServerRender text={txt} mwidth={1000}></ServerRender>
+            <ServerRender text={txt} mwidth={800}></ServerRender>
             <br></br>
             <br></br>
             <br></br>

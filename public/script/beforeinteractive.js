@@ -817,6 +817,10 @@ function outinasc_(
 
 async function modeldrop() {
     let span2 = this.parentElement;
+    if (nav.classList.contains('small')) {
+        nav.classList.remove('small');
+        setprop('--nav_left_max', `175px`);
+    }
     if (!span2.classList.contains('dropdown')) {
         for (let i = 14; i <= 19; i++) {
             ascdesarr[i].classList.remove('alt');
@@ -1196,6 +1200,13 @@ function setleading(vl, elem) {
             : o[i - 1] +
                   ((c - v[i - 1]) / (v[i] - v[i - 1])) * (o[i] - o[i - 1]);
     }
+}
+
+function sublink_underline(e) {
+    nav_links.forEach((elem) => {
+        elem.classList.remove('underline');
+    });
+    this.classList.add('underline');
 }
 
 function wait(delay) {

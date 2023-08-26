@@ -12,7 +12,7 @@ export default function ModelCom({ img, title, spec, des }) {
             <ServerRender
                 text={title}
                 mwidth={800}
-                fontsz={'2em'}
+                fontsz={'1.8em'}
                 justify={'flex-start'}
                 class_="title"
             ></ServerRender>
@@ -34,6 +34,7 @@ export default function ModelCom({ img, title, spec, des }) {
                         width: '400px',
                         maxWidth: '100%',
                     }}
+                    priority={true}
                 ></Image>
             </div>
             <br></br>
