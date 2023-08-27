@@ -166,7 +166,8 @@ const RightPanel = ({ curatorialText_ = false }) => {
                 },
             ];
         }
-        rightPanel(false);
+        setprop('--nav_left_max', `${getRandomDivisibleBy25()}px`);
+        debounceRight._();
         return () => {
             curatorialText = false;
         };

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-before-interactive-script-outside-document */
 import './normalize.css';
 import './globals.css';
 import Script from 'next/script';

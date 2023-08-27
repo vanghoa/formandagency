@@ -292,7 +292,6 @@ const debounceLeft = {
 const debounceRight = {
     first: true,
     timeout: null,
-    size: [],
     _: function () {
         let this_ = this;
         if (this.first) {
@@ -301,7 +300,6 @@ const debounceRight = {
             allwrappers.forEach((elem) => {
                 //elem.classList.add('anim');
                 elem.children[1].classList.remove('lig');
-                this_.size.push(elem.getBoundingClientRect().width);
             });
             this.first = false;
         }
@@ -583,7 +581,7 @@ function readyToExecute() {
         setprop('--scrollbarw', getScrollbarWidth() + 'px');
         readyToExecute_nav();
         setleading(28, section);
-        rightPanel(false);
+        debounceRight._();
     }
 }
 
@@ -600,23 +598,12 @@ function readyToExecute_nav() {
     resizeObserverRight.observe(section);
 }
 
-async function rightPanel(chk = true) {
+async function rightPanel() {
     if (ready >= 2) {
         //console.log('bip');
-        await wait(100);
-        $$('.wrapper').forEach((elem, index) => {
-            if (debounceRight.size.length > 0 && chk) {
-                if (
-                    elem.getBoundingClientRect().width !=
-                    debounceRight.size[index]
-                ) {
-                    calculateLigature(elem);
-                } else {
-                    elem.children[1].classList.add('lig');
-                }
-            } else {
-                calculateLigature(elem);
-            }
+        //await wait(100);
+        $$('.wrapper').forEach((elem) => {
+            calculateLigature(elem);
         });
     }
 }
@@ -1320,6 +1307,14 @@ function anchorclick(e) {
     setTimeout(() => {
         targetElement.classList.remove('flashing');
     }, 500);
+}
+function getRandomDivisibleBy25() {
+    const range = innerWidth * parseFloat(getprop('--rand_ratio')) - 174;
+    const numberOfValues = Math.floor(range / 25);
+    if (numberOfValues <= 0) {
+        return 0;
+    }
+    return 175 + Math.floor(Math.random() * numberOfValues) * 25;
 }
 
 function wait(delay) {
