@@ -1,8 +1,10 @@
 :root {
     --nav_left_max: 375px;
-    --nav_top: 50vh;
+    --vh: 1vh;
+    --nav_top: calc(50 * var(--vh));
     --nav_handle_size: 35px;
     --scrollbarw: 0px;
+    --border_w: 1.8px;
     --purple: #796e7a;
     --white: #e8efef;
 }
@@ -28,7 +30,7 @@ nav {
 
 * {
     box-sizing: border-box;
-    font-family: var(--asabovesobelow), 'Times New Roman', Times, serif;
+    font-family: var(--asabovesobelow), var(--font-noto);
     margin: 0;
     padding: 0;
     font-variation-settings: 'wght' 0;
@@ -38,12 +40,58 @@ nav {
     background-color: unset;
 }
 
+.kernl_negav1 {
+    margin-left: calc(-1 * var(--nav_unit));
+}
+
 main {
     width: 100vw;
-    height: 100vh;
+    height: calc(100 * var(--vh));
     position: relative;
     overflow: hidden;
     display: flex;
+}
+
+/* */
+#togglelig {
+    position: absolute;
+    display: block;
+    left: var(--nav_padding);
+    bottom: var(--nav_padding);
+    border: 0px;
+    overflow: visible;
+    line-height: 5em;
+    transition: font-variation-settings 0.2s, line-height 0.2s;
+    font-variation-settings: 'wght' 100;
+    cursor: pointer;
+}
+
+#togglelig span {
+    display: none;
+    line-height: inherit;
+    font-variation-settings: inherit;
+}
+
+#togglelig span:first-child,
+.small ~ #togglelig span:nth-child(2) {
+    display: inline-block;
+}
+
+.small ~ #togglelig span:first-child {
+    display: none;
+}
+
+#togglelig span:first-child:after {
+    content: ': on>';
+}
+
+.nolig #togglelig {
+    font-variation-settings: 'wght' 0;
+    line-height: 1.8em;
+}
+
+.nolig #togglelig span:first-child:after {
+    content: ': off>';
 }
 
 /* */
@@ -86,13 +134,13 @@ nav #nav_handle {
     width: var(--nav_handle_size);
     height: var(--nav_handle_size);
     background-color: var(--white);
-    border: solid 1.8px var(--purple);
+    border: solid var(--border_w) var(--purple);
     border-radius: 25px;
     position: absolute;
     touch-action: none;
     user-select: none;
     left: var(--nav_left);
-    top: min(calc(100vh - var(--nav_handle_size)), var(--nav_top));
+    top: min(calc((100 * var(--vh)) - var(--nav_handle_size)), var(--nav_top));
     z-index: 100;
     transition: left 0.2s;
     text-align: center;
@@ -119,6 +167,7 @@ nav #ontransitionend {
     transition: left 0.5s;
     display: block;
     width: 100%;
+    height: 8em;
 }
 
 nav #ontransitionend.trans {
@@ -249,8 +298,8 @@ section {
     height: 100%;
     overflow: hidden;
     z-index: 0;
-    border: solid 1.8px var(--purple);
-    font-size: 0.8em;
+    border: solid var(--border_w) var(--purple);
+    font-size: 0.65em;
 
     --lh: 1;
     --lig: 88;
@@ -280,11 +329,11 @@ section * {
 section #landingvideo {
     width: 100vw;
     height: 56.25vw;
-    min-height: 100vh;
-    min-width: 177.77vh;
+    min-height: calc(100 * var(--vh));
+    min-width: calc(177.77 * var(--vh));
     position: relative;
     pointer-events: none;
-    top: 50vh;
+    top: calc(50 * var(--vh));
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0;
@@ -346,6 +395,10 @@ section .wrapper.anim .frontend span {
     transition: font-variation-settings 0.3s;
 }
 
+section .noanim .wrapper.anim .frontend span {
+    transition: unset;
+}
+
 section .wrapper .frontend span {
     font-variation-settings: 'wght' 0;
     font-kerning: none;
@@ -376,6 +429,10 @@ section .lig span.altshort.letter_t {
     font-variation-settings: 'wght' calc(var(--lig_cap) + var(--lig_extra));
 }
 
+#main.nolig section .lig span {
+    font-variation-settings: 'wght' 0;
+}
+
 section .lineheightkeep {
     display: none;
 }
@@ -390,15 +447,47 @@ section .image {
     height: 70px;
 }
 
+section .image.model_img img {
+    border: var(--border_w) var(--white) solid;
+}
+
 section .image img {
     height: 100%;
     width: auto;
+}
+
+/* */
+@keyframes flashAnimation {
+    0%,
+    100% {
+        background-color: initial;
+    }
+    50% {
+        background-color: var(--white); /* Change to the desired color */
+    }
+}
+
+.flashing {
+    animation: flashAnimation 0.5s;
+}
+
+@media only screen and (max-width: 1550px) {
+    html,
+    body,
+    nav {
+        font-size: 20px; /* control */
+    }
+
+    section {
+        font-size: 0.72em;
+    }
 }
 
 @media only screen and (max-width: 600px) {
     :root {
         --nav_left_max: 125px;
         --nav_handle_size: 25px;
+        --border_w: 1px;
     }
 
     html,
@@ -407,9 +496,8 @@ section .image img {
         font-size: 16px; /* control */
     }
 
-    nav #nav_handle,
     section {
-        border: solid 1px var(--purple);
+        font-size: 0.8em;
     }
 }
 

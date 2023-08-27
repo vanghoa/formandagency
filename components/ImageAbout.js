@@ -8,12 +8,16 @@ export default function ImageAbout({
     size,
     wrappersz,
     justify = 'flex-end',
+    class_ = '',
 }) {
     return (
         <div className="flex" style={{ justifyContent: justify }}>
-            <div className="abtwrapper" style={{ width: `${wrappersz}px` }}>
+            <div
+                className="abtwrapper"
+                style={{ width: `${(wrappersz / 1800) * 100}vmax` }}
+            >
                 <div
-                    className="image"
+                    className={`image ${class_}`}
                     style={{
                         height: 'auto',
                         width: '100%',

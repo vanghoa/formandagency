@@ -14,7 +14,10 @@ export default function ServerRender({
             className={`flex ${class_}`}
             style={{ fontSize: fontsz, justifyContent: justify }}
         >
-            <div className="wrapper" style={{ '--min_w': `${mwidth}px` }}>
+            <div
+                className="wrapper"
+                style={{ '--min_w': `${(mwidth / 1800) * 100}vmax` }}
+            >
                 <div className="backend">
                     {maparr.map((line, index) => {
                         if (line == '') {

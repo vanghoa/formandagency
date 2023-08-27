@@ -3,6 +3,13 @@ import './globals.css';
 import Script from 'next/script';
 import localFont from 'next/font/local';
 import Link from 'next/link';
+import { Noto_Serif_TC } from 'next/font/google';
+
+const Noto = Noto_Serif_TC({
+    weight: '400',
+    subsets: ['latin'],
+    variable: '--font-noto',
+});
 
 const asabovesobelow = localFont({
     weight: '100',
@@ -20,7 +27,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <Script src="/script/layout.js" />
-            <body className={asabovesobelow.variable}>
+            <body className={`${asabovesobelow.variable} ${Noto.variable}`}>
                 <Script
                     src="/script/interact.min.js"
                     strategy="beforeInteractive"
@@ -33,7 +40,7 @@ export default function RootLayout({ children }) {
                     src="/script/beforeinteractive.js"
                     strategy="beforeInteractive"
                 />
-                <main>
+                <main id="main" className="nolig">
                     <nav>
                         <div id="nav_handle"></div>
                         <div id="overflow">
@@ -94,14 +101,14 @@ export default function RootLayout({ children }) {
                                 </span>
                             </Link>
                             <Link
-                                class="sublink"
+                                className="sublink"
                                 href="/interview"
                                 prefetch={true}
                             >
                                 <span>i</span>
                                 <span>
                                     in
-                                    <span class="des mark">t</span>
+                                    <span className="des mark">t</span>
                                     erview
                                 </span>
                             </Link>
@@ -113,13 +120,7 @@ export default function RootLayout({ children }) {
                                 <span>a</span>
                                 <span>
                                     ar
-                                    <span
-                                        className="des mark"
-                                        style={{
-                                            marginLeft:
-                                                'calc(-1 * var(--nav_unit))',
-                                        }}
-                                    >
+                                    <span className="des mark kernl_negav1">
                                         t
                                     </span>
                                     is
@@ -198,6 +199,10 @@ export default function RootLayout({ children }) {
                         </div>
                     </nav>
                     <section>{children}</section>
+                    <button id="togglelig">
+                        <span>{'<ligature'}</span>
+                        <span>{'lg'}</span>
+                    </button>
                 </main>
             </body>
         </html>

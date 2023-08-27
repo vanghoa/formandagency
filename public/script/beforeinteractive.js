@@ -14,7 +14,7 @@ const setprop = rootstyle.setProperty.bind(rootstyle);
 const rightpanel = [];
 
 let ready = 0;
-
+let curatorialText = false;
 const nav_numth = 5;
 let nav_tongtrans = [0, 0];
 const fonturl = 'font/AsAbove,SoBelow(Beta47)VF.ttf';
@@ -258,7 +258,9 @@ const debounceLeft = {
         let this_ = this;
         if (this.first) {
             nav.classList.remove('anim', 'small');
-            posarr[nav_numth + 1].elem.classList.remove('dropdown');
+            if (posarr[nav_numth + 1].elem.classList.contains('dropdown')) {
+                modeldrop.call(posarr[nav_numth + 1].elem.children[0]);
+            }
             this.first = false;
         }
 
@@ -297,7 +299,7 @@ const debounceRight = {
             this_.size = [];
             let allwrappers = $$('.wrapper');
             allwrappers.forEach((elem) => {
-                elem.classList.add('anim');
+                //elem.classList.add('anim');
                 elem.children[1].classList.remove('lig');
                 this_.size.push(elem.getBoundingClientRect().width);
             });
@@ -346,6 +348,7 @@ onresize = () => {
             getComputedStyle(document.body).getPropertyValue('--nav_padding')
         ) * nav_fontsz;
     nav_unit = nav_fontsz / (20 / 1.4);
+    viewportheight();
 };
 
 // data
@@ -456,19 +459,19 @@ fetch(`${window.location.origin}/${fonturl}`)
     .then((data) => {
         font = opentype.parse(data);
         // ascender
-        list.as('b', 70, [2], [], 2, [5]);
-        list.as('d', 70, [9], [], 9, [5]);
+        list.as('b', 70, [2], [2], 2, [5]);
+        list.as('d', 70, [9], [9], 9, [5]);
         list.as('f', 35, [3], [], 4);
-        list.as('h', 63, [2, 8], [], 2);
-        list.as('k', 56, [2, 8], [], 2);
-        list.as('l', 21, [2], [], 2);
+        list.as('h', 63, [2, 8], [2], 2);
+        list.as('k', 56, [2, 8], [2], 2);
+        list.as('l', 21, [2], [2], 2);
         // descender
         list.des('g', 70, [], [9], 8);
         list.des('j', 21, [], [2], 1);
-        list.des('p', 70, [], [2], 2, [5]);
-        list.des('q', 70, [], [9], 9, [5]);
-        list.des('y', 63, [], [2, 8], 8, [3]);
-        list.des('t', 35, [], [3], 3);
+        list.des('p', 70, [2], [2], 2, [5]);
+        list.des('q', 70, [9], [9], 9, [5]);
+        list.des('y', 63, [8], [2, 8], 8, [3]);
+        list.des('t', 35, [3], [3], 3);
         // lowercase
         list.lowercase('a', 56, [7], [], [3, 4]);
         list.lowercase('c', 56, [], [], [4, 5]);
@@ -574,9 +577,10 @@ fetch(`${window.location.origin}/${fonturl}`)
         readyToExecute();
     });
 
-setprop('--scrollbarw', getScrollbarWidth() + 'px');
 function readyToExecute() {
     if (++ready == 2) {
+        viewportheight();
+        setprop('--scrollbarw', getScrollbarWidth() + 'px');
         readyToExecute_nav();
         setleading(28, section);
         rightPanel(false);
@@ -860,6 +864,7 @@ async function modeldrop() {
 
 async function calculateLigature(elem) {
     //await wait(200);
+    let lkarr = elem.lkarr == undefined ? [] : elem.lkarr;
     let div = elem.children[1];
     div.classList.add('lig');
     let divx = elem.children[0];
@@ -982,8 +987,12 @@ async function calculateLigature(elem) {
                     if (string == 't') {
                         span.classList.add('letter_t');
                     }
-                    span.style.marginLeft = `calc(${kern} * var(--unit))`;
-                    span.style.marginRight = `calc(${kernr} * var(--unit))`;
+                    if (kern != 0) {
+                        span.style.marginLeft = `calc(${kern} * var(--unit))`;
+                    }
+                    if (kernr != 0) {
+                        span.style.marginRight = `calc(${kernr} * var(--unit))`;
+                    }
                     if (char.st_down) {
                         let tempvl = tong + char.vl_down - 1;
                         span.classList.add('des');
@@ -1105,56 +1114,149 @@ async function calculateLigature(elem) {
         }
     }
 
-    // fully render
-    div.innerHTML = ''; //
+    // fully render //
+    let frag = document.createDocumentFragment();
+    //
+    /*
+    {
+        let char_count = 0;
+        let thearray = [];
+        let buloz = (function flattenNestedArray(array) {
+            const _1 = [];
+            for (const nestedArray of array) {
+                let _2 = [];
+                for (const innerArray of nestedArray) {
+                    let _3 = [];
+                    for (const item of innerArray) {
+                        if (typeof item === 'string') {
+                            _3.push(...item);
+                        } else {
+                            _3.push(item.innerHTML);
+                        }
+                    }
+                    _2.push(_3);
+                }
+                _1.push(_2);
+            }
+            return _1;
+        })(render_arr_arr);
+
+        for (let x = 0; x < buloz.length; x++) {
+            for (let i = 0; i < buloz[x].length; i++) {
+                for (let k = 0; k < buloz[x][i].length; k++) {
+                    if (buloz[x][i][k] == 'w') {
+                        if (buloz[x][i].slice(k, k + 3).join('') == 'www') {
+                            thearray.push({
+                                start: char_count,
+                                txt: buloz[x][i].slice(k, k + 10).join(''),
+                            });
+                        }
+                    }
+                    char_count++;
+                }
+            }
+        }
+        console.log(thearray);
+    }*/
+    //
+    render_arr_arr = (function flattenNestedArray(array) {
+        const _1 = [];
+        for (const nestedArray of array) {
+            let _2 = [];
+            for (const innerArray of nestedArray) {
+                let _3 = [];
+                for (const item of innerArray) {
+                    if (typeof item === 'string') {
+                        _3.push(...item);
+                    } else {
+                        _3.push(item);
+                    }
+                }
+                _2.push(_3);
+            }
+            _1.push(_2);
+        }
+        return _1;
+    })(render_arr_arr);
+    let char_count = 0;
+    let lkarr_i = 0;
+    let lkarr_i_temp = 0;
+    let atag;
+    let lkarr_t_i = 0;
     for (let x = 0; x < render_arr_arr.length; x++) {
         let p_ = $create('p');
         //spacing above
-        if (render_arr_arr[x][0].length == 0) {
+        if (render_arr_arr[x][0].length == 0 && render_arr_arr[x].length == 1) {
             p_.append($create('br'));
         }
         for (let i = 0; i < render_arr_arr[x].length; i++) {
             let baretxt = '';
             for (let k = 0; k < render_arr_arr[x][i].length; k++) {
-                if (typeof render_arr_arr[x][i][k] == 'string') {
+                if (lkarr[lkarr_i]?.s == char_count) {
+                    lkarr_t_i = char_count;
+                    lkarr_i_temp = lkarr_i;
+                    atag = $create('a');
+                    if (lkarr[lkarr_i].id == undefined) {
+                        atag.href = `${lkarr[lkarr_i].txt}`;
+                        atag.target = '_blank';
+                    } else {
+                        atag.id = lkarr[lkarr_i].id;
+                        atag.href = atag.href_ = `#${lkarr[lkarr_i].href}`;
+                        atag.onclick = anchorclick;
+                    }
+                    p_.append(baretxt, atag);
+                    baretxt = '';
+                    lkarr_i++;
+                }
+                if (
+                    lkarr_t_i >= lkarr[lkarr_i_temp]?.s &&
+                    lkarr_t_i <=
+                        lkarr[lkarr_i_temp]?.s +
+                            lkarr[lkarr_i_temp]?.txt.length -
+                            1
+                ) {
+                    atag.append(render_arr_arr[x][i][k]);
+                    lkarr_t_i++;
+                } else if (typeof render_arr_arr[x][i][k] == 'string') {
                     baretxt += render_arr_arr[x][i][k];
                 } else {
                     if (baretxt == '') {
-                        render_arr_arr[x][i][k].style.marginLeft = '0';
+                        render_arr_arr[x][i][k].style.marginLeft = '';
                         p_.append(render_arr_arr[x][i][k]);
                     } else {
                         p_.append(baretxt, render_arr_arr[x][i][k]);
                     }
                     baretxt = '';
                 }
+                char_count++;
             }
             if (baretxt != '') {
                 p_.append(baretxt);
             }
         }
-        div.append(p_);
+        frag.append(p_);
     }
+    div.style.display = 'none';
+    div.innerHTML = '';
+    div.appendChild(frag);
+    div.style.display = '';
 
     // animation
     await wait(100);
     let allspan = elem.querySelectorAll('span');
     if (allspan.length > 0) {
         elem.classList.add('anim');
+        /*
         allspan[0].ontransitionend = (event) => {
             elem.classList.remove('anim');
             allspan[0].ontransitionend = null;
         };
+        */
         for (let i = 0; i < allspan.length; i++) {
             allspan[i].classList.add(allspan[i].wght);
         }
     }
     //
-    /*
-    if (resizecheck) {
-        resizeObserverLeft.observe(divx);
-        resizecheck = false;
-    }
-    */
 }
 
 function setleading(vl, elem) {
@@ -1208,6 +1310,17 @@ function sublink_underline(e) {
     });
     this.classList.add('underline');
 }
+function togglelig_() {
+    main.classList.toggle('nolig');
+}
+function anchorclick(e) {
+    const targetElement = document.querySelector(this.href_);
+    targetElement.classList.add('flashing');
+
+    setTimeout(() => {
+        targetElement.classList.remove('flashing');
+    }, 500);
+}
 
 function wait(delay) {
     return new Promise((resolve) => setTimeout(resolve, delay));
@@ -1234,4 +1347,7 @@ function getScrollbarWidth() {
     outer.parentNode.removeChild(outer);
 
     return scrollbarWidth;
+}
+function viewportheight() {
+    setprop('--vh', `${innerHeight * 0.01}px`);
 }

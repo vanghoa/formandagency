@@ -1,5 +1,6 @@
 'use strict';
 
+const main = $('main');
 const nav_handle = $('#nav_handle');
 const nav = $('nav');
 const nav_logo = $$('.logo');
@@ -12,6 +13,8 @@ nav_links.forEach((e) => {
 const nav_trans = $('#ontransitionend');
 const nav_modelonclick = $('#modelonclick');
 const nav_modelonclick_ = $('#modelonclick_');
+const togglelig = $('#togglelig');
+togglelig.onclick = togglelig_;
 const section = $('section');
 const section_style = section.style;
 const section_setprop = section_style.setProperty.bind(section_style);
@@ -48,7 +51,7 @@ let nav_unit = nav_fontsz / (20 / 1.4);
                     relativePoints: [{ x: 0, y: 0 }],
                 }),
                 interact.modifiers.restrictRect({
-                    restriction: $('main'),
+                    restriction: main,
                 }),
             ],
             inertia: true,

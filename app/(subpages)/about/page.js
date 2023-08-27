@@ -7,12 +7,11 @@ export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 export default async function Subpage() {
-    const title = `Form And Agency`;
-    const txt1 = `A solo exhibition by Brandon Tay
+    const title = `Form and Agency`;
+    const des = `A solo exhibition by Brandon Tay
     Exhibition Dates: 26 August – 1 October 2023
-    Artist Talk: 16th September 2023
-
-    Yeo Workshop is pleased to present a solo exhibition by Brandon Tay, a Singaporean artist whose practice is concerned with the emergent complexities related to digital materials. Primarily working through digital media, mediated sculptures, and the moving image, Tay’s works often complicate the distinctions between the tangible and the incorporeal, whilst addressing and contending with the relationality of their complex natures.
+    Artist Talk: 16th September 2023`;
+    const txt1 = `Yeo Workshop is pleased to present a solo exhibition by Brandon Tay, a Singaporean artist whose practice is concerned with the emergent complexities related to digital materials. Primarily working through digital media, mediated sculptures, and the moving image, Tay’s works often complicate the distinctions between the tangible and the incorporeal, whilst addressing and contending with the relationality of their complex natures.
 
     For his inaugural solo exhibition, Form & Agency, Brandon Tay introduces a new body of work that explores the materiality of the digital, through an engagement with 3D-printed sculptures, live-simulations, and virtual ecosystems. Introducing an element of experimentation, the exhibition functions on three different stacks — the physical artworks in the gallery space, the virtual components of the artworks, and a live and interactive game simulation — that operate both independently and in relation to each other.
 
@@ -59,6 +58,12 @@ export default async function Subpage() {
                 class_="title"
             ></ServerRender>
             <br></br>
+            <ServerRender
+                text={des}
+                mwidth={800}
+                justify={'flex-start'}
+            ></ServerRender>
+            <br></br>
             <ServerRender text={txt1} mwidth={800}></ServerRender>
             <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
             <br></br>
@@ -72,6 +77,7 @@ export default async function Subpage() {
                 size={300}
                 wrappersz={1000}
                 justify="flex-start"
+                class_="model_img"
             ></ImageAbout>
             <br></br>
             <ServerRender

@@ -17,7 +17,7 @@ export default function ModelCom({ img, title, spec, des }) {
                 class_="title"
             ></ServerRender>
             <div
-                className="image"
+                className="image model_img"
                 style={{
                     height: 'auto',
                     width: '100%',
@@ -38,9 +38,9 @@ export default function ModelCom({ img, title, spec, des }) {
                 ></Image>
             </div>
             <br></br>
-            <ServerRender text={spec} mwidth={700}></ServerRender>
+            <ServerRender text={spec} mwidth={800}></ServerRender>
             <br></br>
-            <ServerRender text={des} mwidth={700}></ServerRender>
+            <ServerRender text={des} mwidth={800}></ServerRender>
             <br></br>
             <br></br>
             <br></br>
