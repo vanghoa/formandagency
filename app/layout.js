@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
                     src="/script/beforeinteractive.js"
                     strategy="beforeInteractive"
                 />
-                <main id="main" className="nolig">
+                <main id="main">
                     <nav>
                         <div id="nav_handle"></div>
                         <div id="overflow">
