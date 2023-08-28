@@ -1,10 +1,10 @@
 'use client';
 import { useEffect } from 'react';
 
-const RightPanel = ({ curatorialText_ = false }) => {
+const RightPanel = ({ no }) => {
     useEffect(() => {
-        curatorialText = curatorialText_;
-        if (curatorialText) {
+        nav_links[no].classList.add('underline');
+        if (no == 2) {
             $('.txt3 .wrapper').lkarr = [
                 {
                     s: 766,
@@ -165,11 +165,26 @@ const RightPanel = ({ curatorialText_ = false }) => {
                     href: 'fn11',
                 },
             ];
+        } else if (no == 4) {
+            $('.arttalk .wrapper').lkarr = [
+                {
+                    s: 848,
+                    txt: 'tinyurl.com/FormAndAgencyTalk',
+                    href: 'https://tinyurl.com/FormAndAgencyTalk',
+                },
+            ];
         }
-        setprop('--nav_left_max', `${getRandomDivisibleBy25()}px`);
+
+        if (no <= 5) {
+            nav_left += new_nav_left();
+        }
+
+        setprop('--nav_left_max', `${nav_left}px`);
         debounceRight._();
         return () => {
-            curatorialText = false;
+            nav_links.forEach((elem) => {
+                elem.classList.remove('underline');
+            });
         };
     }, []);
     return <></>;

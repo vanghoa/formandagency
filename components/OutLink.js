@@ -3,7 +3,7 @@ export const fetchCache = 'force-cache';
 
 export default function OutLink({ link }) {
     return (
-        <a href={link} target="_blank" className="flex_sta">
+        <a href={`http://${link}/`} target="_blank" className="flex_sta">
             {link}
         </a>
     );

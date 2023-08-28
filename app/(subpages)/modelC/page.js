@@ -12,5 +12,15 @@ export default function subpage() {
 
     'Relics of the Cyborg Theocracy'
     `;
-    return <ModelCom img={'C'} title={title} spec={spec} des={des}></ModelCom>;
+    return (
+        <ModelCom
+            img={'C'}
+            next={'D'}
+            last={'B'}
+            title={title}
+            spec={spec}
+            des={des}
+            no={8}
+        ></ModelCom>
+    );
 }

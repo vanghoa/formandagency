@@ -89,7 +89,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             <br></br>
             <ServerRender
                 text={title}
-                mwidth={800}
+                mwidth={600}
                 fontsz={'1.8em'}
                 justify={'flex-start'}
                 class_="title"
@@ -102,7 +102,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             ></ServerRender>
             <ServerRender
                 text={txt2}
-                mwidth={800}
+                mwidth={550}
                 class_="noanim"
             ></ServerRender>
             <ServerRender
@@ -112,7 +112,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             ></ServerRender>
             <ServerRender
                 text={txt3}
-                mwidth={800}
+                mwidth={1000}
                 class_="txt3 noanim"
             ></ServerRender>
             <ServerRender
@@ -127,7 +127,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             ></ServerRender>
             <ServerRender
                 text={txt5}
-                mwidth={800}
+                mwidth={1000}
                 class_="noanim"
             ></ServerRender>
             <ServerRender
@@ -143,7 +143,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             <br></br>
             <br></br>
             <br></br>
-            <RightPanel curatorialText_={true}></RightPanel>
+            <RightPanel curatorialText={true} no={2}></RightPanel>
         </>
     );
 }

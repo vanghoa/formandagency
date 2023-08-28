@@ -14,5 +14,15 @@ export default function subpage() {
     
     'The Bezos Collection: 21st Century Sinofuturist  Chinese Art and Design''
     `;
-    return <ModelCom img={'D'} title={title} spec={spec} des={des}></ModelCom>;
+    return (
+        <ModelCom
+            img={'D'}
+            next={'E'}
+            last={'C'}
+            title={title}
+            spec={spec}
+            des={des}
+            no={9}
+        ></ModelCom>
+    );
 }

@@ -28,8 +28,7 @@ export default async function Subpage() {
 
     In his practice, he complicates distinctions between the tangible and incorporeal, both in composition and well as subject matter, often looking into thematics surrounding the relationships between history and futurity, digital materiality, and contemporary philosophies.  Brandon views digital materials as irreducible components that combine dynamically to create a more complex whole. Working with diverse components, whether fragments of 3D geometry, prompt tokens or 3D avatars of human beings, he combines these with out-of-context factors — such as doom-scrolling induced trance states, automatic writing, game physics and the likes — to simulate something that feels larger than its parts in unpredictable ways.
 
-    As a collaborator and individually, his work has been shown at Art Dubai, tanzhaus nrw Düsseldorf, Kyoto Dance Experiment, Singapore International Festival of the Arts, M1 Fringe Festival among others. His works are also in private and public collections such as the Australian Centre for Moving Images (ACMI), Melbourne/Naarm.
-`;
+    As a collaborator and individually, his work has been shown at Art Dubai, tanzhaus nrw Düsseldorf, Kyoto Dance Experiment, Singapore International Festival of the Arts, M1 Fringe Festival among others. His works are also in private and public collections such as the Australian Centre for Moving Images (ACMI), Melbourne/Naarm.`;
     const abtcolab = `ABOUT THE COLLABORATORS
 
     Rafi Abdullah (b. 1991) is a curator based out of Singapore with close to a decade of experience working in varying capacities across cultural institutions and museums (Indian Heritage Centre, Institute of Contemporary Arts Singapore, The Private Museum) and art galleries (Wetterling Teo Gallery, Hatch Art Project) in Singapore. He was a selected participant in the curatorial workshops, Staging and the Exhibition (2018) hosted by Institute of Contemporary Arts (ICA) Singapore in partnership with the Department of Visual Culture, Goldsmiths University of London; as well as the Workshops for Emerging Arts Professionals (2020) hosted by Para Site, Hong Kong. He has also written for several artist catalogues and books, as well as for/in journals, platforms, and institutions such as Yavuz Gallery, Sullivan+Strumpf, National Gallery Singapore, and So Far. Most recently, he was the co-curator of the digital exhibition Many Beliefs, One Future 2.0 (2022), and curator for the digital billboard art festival Crossroads (2022), and the exhibition Poor Imagination (2019).
@@ -85,19 +84,19 @@ export default async function Subpage() {
                 mwidth={1000}
                 justify="flex-start"
             ></ServerRender>
-            <a href="http://www.brandontay.net/" target="_blank"></a>
-            <a
-                href="https://www.yeoworkshop.com/artists/59-brandon-tay/"
-                target="_blank"
-            ></a>
+            <OutLink link={'www.brandontay.net'}></OutLink>
+            <OutLink
+                link={'www.yeoworkshop.com/artists/59-brandon-tay/'}
+            ></OutLink>
+            <br></br>
             <ServerRender text={abtcolab} mwidth={700}></ServerRender>
-            <OutLink link={'http://www.rafiabdullah.com/'}></OutLink>
+            <OutLink link={'www.rafiabdullah.com'}></OutLink>
             <ServerRender text={bogna} mwidth={700}></ServerRender>
-            <OutLink link={'https://www.bognamk.com/'}></OutLink>
+            <OutLink link={'www.bognamk.com'}></OutLink>
             <ServerRender text={darius} mwidth={700}></ServerRender>
-            <OutLink link={'https://dariusou.work/'}></OutLink>
+            <OutLink link={'dariusou.work'}></OutLink>
             <ServerRender text={tone} mwidth={700}></ServerRender>
-            <OutLink link={'https://tonewentities.com/'}></OutLink>
+            <OutLink link={'tonewentities.com'}></OutLink>
             <ServerRender text={txt3} mwidth={700}></ServerRender>
             <OutLink link={'www.yeoworkshop.com'}></OutLink>
             <br></br>
@@ -106,7 +105,7 @@ export default async function Subpage() {
             <br></br>
             <br></br>
             <br></br>
-            <RightPanel></RightPanel>
+            <RightPanel no={1}></RightPanel>
         </>
     );
 }

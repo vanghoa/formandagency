@@ -14,11 +14,13 @@ const setprop = rootstyle.setProperty.bind(rootstyle);
 const rightpanel = [];
 
 let ready = 0;
-let curatorialText = false;
 const nav_numth = 5;
 let nav_tongtrans = [0, 0];
+const nav_links = $$('a.sublink, a.model, #logoouter');
 const fonturl = 'font/AsAbove,SoBelow(Beta47)VF.ttf';
-let font, nav_left;
+let font,
+    modeldrop_papa,
+    nav_left = parseInt(getprop('--nav_left_max'));
 let posarr = [
     {
         nln: {
@@ -258,9 +260,6 @@ const debounceLeft = {
         let this_ = this;
         if (this.first) {
             nav.classList.remove('anim', 'small');
-            if (posarr[nav_numth + 1].elem.classList.contains('dropdown')) {
-                modeldrop.call(posarr[nav_numth + 1].elem.children[0]);
-            }
             this.first = false;
         }
 
@@ -274,7 +273,11 @@ const debounceLeft = {
                 nav_trans.getBoundingClientRect().width <
                 0.6 * nav_fontsz + nav_padding * 2
             ) {
-                nav_resize_small();
+                posarr[nav_numth + 1].elem.classList.remove('dropdown', 'show');
+                nav.classList.add('small');
+                for (let i = 1; i < posarr.length; i++) {
+                    posarr[i].elem.style.transform = '';
+                }
             } else {
                 nav.classList[
                     nav_trans.getBoundingClientRect().width <
@@ -283,6 +286,9 @@ const debounceLeft = {
                         : 'remove'
                 ]('medium');
                 nav_resize_handle();
+                if (posarr[nav_numth + 1].elem.classList.contains('dropdown')) {
+                    modeldrop_template(true, () => {});
+                }
             }
         }, 300);
     },
@@ -295,7 +301,6 @@ const debounceRight = {
     _: function () {
         let this_ = this;
         if (this.first) {
-            this_.size = [];
             let allwrappers = $$('.wrapper');
             allwrappers.forEach((elem) => {
                 //elem.classList.add('anim');
@@ -594,6 +599,7 @@ function readyToExecute_nav() {
         count++;
     });
     console.log(posarr);
+    modeldrop_papa = posarr[nav_numth + 1].elem;
     resizeObserverLeft.observe(nav);
     resizeObserverRight.observe(section);
 }
@@ -612,7 +618,7 @@ function nav_resize_handle() {
     let tongtrans = 0;
     let navw = Math.floor(nav_trans.getBoundingClientRect().width / nav_unit);
     let logocheck = Math.random() > 0.5 && posarr[0].nln_.tong < navw;
-    nav.classList[logocheck ? 'add' : 'remove']('logo2');
+    nav_logoouter.classList[logocheck ? 'add' : 'remove']('logo2');
     for (let i = 0; i < ascdesarr.length; i++) {
         ascdesarr[i].classList.remove('alt');
     }
@@ -731,13 +737,6 @@ function nav_resize_handle() {
     }
 }
 
-function nav_resize_small() {
-    nav.classList.add('small');
-    for (let i = 1; i < posarr.length; i++) {
-        posarr[i].elem.style.transform = '';
-    }
-}
-
 function outinasc_(
     objlast_as,
     objcurr_as,
@@ -806,13 +805,13 @@ function outinasc_(
     ];
 }
 
-async function modeldrop() {
-    let span2 = this.parentElement;
+async function modeldrop_template(check, callback) {
     if (nav.classList.contains('small')) {
         nav.classList.remove('small');
+        nav_left = 175;
         setprop('--nav_left_max', `175px`);
     }
-    if (!span2.classList.contains('dropdown')) {
+    if (modeldrop_papa.classList.contains('dropdown') == check) {
         for (let i = 14; i <= 19; i++) {
             ascdesarr[i].classList.remove('alt');
         }
@@ -835,18 +834,10 @@ async function modeldrop() {
             nav_numth + 1
         ].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit)))`;
         posarr[nav_numth + 1]['ascspan'][outasc[1]].classList.add('alt');
-        //
-        span2.classList.add('show');
-        await wait(50);
-        span2.classList.add('dropdown');
-    } else {
-        span2.classList.remove('dropdown');
-        await wait(1050);
-        span2.classList.remove('show');
     }
+    callback();
     await wait(500);
     nav.classList.toggle('help');
-    //
 }
 
 async function calculateLigature(elem) {
@@ -1184,7 +1175,9 @@ async function calculateLigature(elem) {
                     lkarr_i_temp = lkarr_i;
                     atag = $create('a');
                     if (lkarr[lkarr_i].id == undefined) {
-                        atag.href = `${lkarr[lkarr_i].txt}`;
+                        atag.href = lkarr[lkarr_i].href
+                            ? `${lkarr[lkarr_i].href}`
+                            : `${lkarr[lkarr_i].txt}`;
                         atag.target = '_blank';
                     } else {
                         atag.id = lkarr[lkarr_i].id;
@@ -1291,12 +1284,6 @@ function setleading(vl, elem) {
     }
 }
 
-function sublink_underline(e) {
-    nav_links.forEach((elem) => {
-        elem.classList.remove('underline');
-    });
-    this.classList.add('underline');
-}
 function togglelig_() {
     main.classList.toggle('nolig');
 }
@@ -1308,14 +1295,21 @@ function anchorclick(e) {
         targetElement.classList.remove('flashing');
     }, 500);
 }
-function getRandomDivisibleBy25() {
-    const range = innerWidth * parseFloat(getprop('--rand_ratio')) - 174;
-    const numberOfValues = Math.floor(range / 25);
-    if (numberOfValues <= 0) {
-        return 0;
-    }
-    return 175 + Math.floor(Math.random() * numberOfValues) * 25;
-}
+
+const new_nav_left = (() => {
+    let lim = 150;
+    let x = -25;
+    return function () {
+        if (nav_left < lim) {
+            return 150 - nav_left;
+        } else if (nav_left >= innerWidth * 0.4) {
+            return -50;
+        } else {
+            x = -x;
+        }
+        return x;
+    };
+})();
 
 function wait(delay) {
     return new Promise((resolve) => setTimeout(resolve, delay));

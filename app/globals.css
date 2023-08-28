@@ -1,5 +1,4 @@
 :root {
-    --rand_ratio: 0.75;
     --nav_left_max: 375px;
     --vh: 1vh;
     --nav_top: calc(50 * var(--vh));
@@ -65,6 +64,7 @@ main {
     transition: font-variation-settings 0.2s, line-height 0.2s;
     font-variation-settings: 'wght' 100;
     cursor: pointer;
+    font-size: 0.65em;
 }
 
 #togglelig span {
@@ -183,7 +183,7 @@ nav .sublink {
     transition: transform 0.5s;
 }
 
-nav .underline span:is(:first-child, :nth-child(2)) {
+nav .underline > span:is(:first-child, :nth-child(2)) {
     text-decoration: underline;
 }
 
@@ -217,7 +217,7 @@ nav .sublink > .model:nth-child(n + 3) {
     line-height: 0em;
     word-break: break-all;
     width: calc(var(--nav_unit) * 43);
-    transition: line-height 1s, margin-top 1s, width 1s;
+    /*transition: line-height 1s, margin-top 1s, width 1s;*/
     z-index: 1;
     color: transparent;
 }
@@ -250,7 +250,7 @@ nav .sublink.dropdown > .model:nth-child(n + 3) {
 
 nav .sublink > .model:nth-child(n + 3) > span:first-child {
     font-variation-settings: 'wght' 0;
-    transition: font-variation-settings 1s;
+    /*transition: font-variation-settings 1s;*/
 }
 
 nav .sublink.dropdown > .model:nth-child(n + 3) > span:first-child {
@@ -283,11 +283,11 @@ nav.small #logo2 span.mark {
 }
 
 /* */
-nav.logo2 .logo {
+nav .logo2 .logo {
     display: inline-block;
 }
 
-nav.logo2 [href='/about'] {
+nav .logo2 [href='/about'] {
     margin-top: 2.5em;
 }
 
@@ -315,11 +315,15 @@ h1 {
 
 /* */
 section > div {
-    padding: var(--nav_padding);
+    padding: var(--nav_padding) var(--section_padding);
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
     height: 100%;
+    --section_padding: 1.3em;
+    --true_w: calc(
+        var(--section_w) - var(--section_padding) * 2 - var(--scrollbarw) - 10px
+    );
 }
 
 section * {
@@ -340,7 +344,7 @@ section #landingvideo {
     padding: 0;
 }
 
-section :is(.flex, .flex_sta) {
+section :is(.flex, .flex_sta, .flex_end) {
     display: flex;
     width: 100%;
     justify-content: flex-end;
@@ -357,12 +361,13 @@ section .flex_sta {
     justify-content: flex-start;
 }
 
+section .flex_end {
+    justify-content: flex-end;
+}
+
 section .wrapper {
     --min_w: 1000px;
     --unit: calc(1em / (20 / 1.4));
-    --true_w: calc(
-        var(--section_w) - var(--nav_padding) * 2 - var(--scrollbarw)
-    );
     --cal_w: min(var(--true_w), var(--min_w));
     width: var(--cal_w);
     overflow: visible;
@@ -458,6 +463,33 @@ section .image img {
 }
 
 /* */
+.IR_flex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.IR_flex > .flex_item {
+    width: fit-content;
+    align-self: flex-start;
+}
+
+.IR_flex > .flex_item > * {
+    position: relative;
+}
+
+.IR_flex > .flex_item iframe {
+    --finalw: min(var(--mwidth), var(--true_w));
+    width: var(--finalw);
+    height: calc(var(--finalw) * 0.5625);
+    border: var(--border_w) var(--white) solid;
+}
+
+.IR_flex > .flex_item .timestamp p {
+    text-decoration: underline;
+}
+
+/* */
 @keyframes flashAnimation {
     0%,
     100% {
@@ -474,7 +506,6 @@ section .image img {
 
 @media only screen and (max-width: 1550px) {
     :root {
-        --rand_ratio: 0.7;
     }
 
     html,
@@ -483,6 +514,7 @@ section .image img {
         font-size: 20px; /* control */
     }
 
+    #togglelig,
     section {
         font-size: 0.72em;
     }
@@ -490,7 +522,6 @@ section .image img {
 
 @media only screen and (max-width: 600px) {
     :root {
-        --rand_ratio: 0.6;
         --nav_left_max: 125px;
         --nav_handle_size: 25px;
         --border_w: 1px;
@@ -502,9 +533,19 @@ section .image img {
         font-size: 16px; /* control */
     }
 
+    #togglelig,
     section {
         font-size: 0.8em;
     }
+}
+
+nav:not(.small) .underline #logo2 > *,
+nav:not(.small) .underline #logo1 ~ #logo2 > *,
+nav.small .underline #logo2 .mark.y,
+nav.small .underline #logo1 ~ #logo2 .mark.y,
+nav:not(.small) #logoouter.logo2.underline * {
+    text-decoration: underline;
+    text-decoration-color: var(--purple);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -524,7 +565,7 @@ section .image img {
         text-decoration: underline;
     }
 
-    nav.logo2 #logoouter:hover * {
+    nav #logoouter.logo2:hover * {
         text-decoration: underline;
     }
 }

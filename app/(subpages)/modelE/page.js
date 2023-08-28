@@ -12,5 +12,15 @@ export default function subpage() {
 
     'Semiotics of the 21st Century- Post LLM Linguistic Theory'    
     `;
-    return <ModelCom img={'E'} title={title} spec={spec} des={des}></ModelCom>;
+    return (
+        <ModelCom
+            img={'E'}
+            next={'A'}
+            last={'D'}
+            title={title}
+            spec={spec}
+            des={des}
+            no={10}
+        ></ModelCom>
+    );
 }

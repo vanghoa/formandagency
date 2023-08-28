@@ -5,16 +5,17 @@ export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
 export default function subpage() {
-    let title = `“Let the outside in”: A conversation between Brandon Tay and Bogna Konior`;
+    let title = `“Let the outside in”:
+    A conversation between Brandon Tay and Bogna Konior`;
     let bogna = [],
         don = [],
         BK = 'BK',
         BT = 'BT';
-    bogna.push(`${BK}
+    bogna.push(`Bogna Konior (BK)
     Form and Agency invites us to think about digital culture as an inhuman and occult space, where one could encounter agency that is not easily attributed to humans alone. It builds on certain traditions in cyberculture studies from the 1990s, such as the work of the Cybernetic Culture Research Unit and their insistence on the inhuman agency of technology itself, while also drawing on ancient ritual practices on the one hand, and current complexity and contingency science on the other. Multiple disciplines engage with the question of externality breaking through into the established order of things, tracing how the unknown or the outside can appear suddenly or gradually. There is an inhuman latent space of digital culture, you suggest, in which nests a potential for social transformation, whether that means a huge paradigm shift that completely changes our world as we known it, or whether it delineates small pockets of the unknown that can be discovered throughout daily life, where reality is lived otherwise.
     The exhibition includes several objects that–both at the time when you made them and when the audience encounters them–can serve as ritual artefacts. There is Model A (Adversaries), which prompts us to see ourselves as if from the perspective of future anthropologists, and from a vantage point where generative AI had already altered what counts as a mind or an agency. There is Model B (Orchid Mantis), a quasi-religious plant-animal chimaera used for shapeshifting rituals. There is Model C (Marrow Codex), a device that can be only activated in the process of its own destruction, which encodes data into genetic sequencing of DNA. The use of this device on oneself would then begin an open-ended process of mutation. There is Model D (Heikeji), related to the history of Chinese futurism, a portal to a future Shanghai as a metropolis of ever-accelerating surveillance and cryptography. There is Model E (Nomad Lexis), which complicates the relationship between text and image in an era of post-AI language meltdown and the automation of meaning. All of these speculative objects are black boxes where exact meaning is obscured but ‘an aggressive potency remains.’ They are artefacts for techno-alchemy and ritual shifting of perception, asking of us to change how we define our human place within machine culture.`);
     don.push(
-        `${BT}
+        `Brandon Tay (BT)
         Computation could be the ultimate ‘Black Swan event:’ a high-impact event whose effects are difficult to foresee but seem inevitable in retrospect. From where we stand, living in digital spaces seems already unquestionable and yet it is simultaneously a huge paradigm shift, whose weirdness we only think we have already domesticated. The objects in the show are artefacts for perspectival shifts: what if we think of ourselves in a process of a long-term, open-ended mutation, an exchange of qualities between humans and machines? There is an ongoing metamorphosis distributed across humans and their technologies, a process of mutual co-constitution. Much changes if we imagine ourselves in a process of exchange with machines rather than as their masters–they are only our tools–or their future victims, as in the scenarios of the AI apocalypse.`
     );
     bogna.push(`${BK}
@@ -173,14 +174,14 @@ export default function subpage() {
                 <>
                     <ServerRender
                         text={bogna[i]}
-                        mwidth={800}
+                        mwidth={700}
                         justify={'flex-end'}
                         class_="interview_firstline noanim"
                     ></ServerRender>
                     <br></br>
                     <ServerRender
                         text={txt}
-                        mwidth={800}
+                        mwidth={700}
                         justify={'flex-start'}
                         class_="interview_firstline noanim"
                     ></ServerRender>
@@ -193,7 +194,7 @@ export default function subpage() {
             <br></br>
             <br></br>
             <br></br>
-            <RightPanel></RightPanel>
+            <RightPanel no={3}></RightPanel>
         </>
     );
 }

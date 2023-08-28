@@ -4,7 +4,7 @@ export const fetchCache = 'force-cache';
 export default function ServerRender({
     text,
     mwidth,
-    fontsz = 'unset',
+    fontsz = 'inherit',
     justify = 'flex-end',
     class_ = '',
 }) {

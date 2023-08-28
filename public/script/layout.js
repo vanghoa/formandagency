@@ -4,12 +4,9 @@ const main = $('main');
 const nav_handle = $('#nav_handle');
 const nav = $('nav');
 const nav_logo = $$('.logo');
+const nav_logoouter = $('#logoouter');
 const nav_handle_size = parseInt(getprop('--nav_handle_size'));
 const nav_sublinks = $$('.sublink');
-const nav_links = $$('a.sublink, a.model');
-nav_links.forEach((e) => {
-    e.addEventListener('click', sublink_underline);
-});
 const nav_trans = $('#ontransitionend');
 const nav_modelonclick = $('#modelonclick');
 const nav_modelonclick_ = $('#modelonclick_');
@@ -19,8 +16,12 @@ const section = $('section');
 const section_style = section.style;
 const section_setprop = section_style.setProperty.bind(section_style);
 let ascdesarr = $$(':is(.asc, .des)');
-nav_modelonclick.onclick = modeldrop;
-nav_modelonclick_.onclick = modeldrop;
+nav_modelonclick.onclick = nav_modelonclick_.onclick = () => {
+    modeldrop_template(false, () => {
+        modeldrop_papa.classList.toggle('dropdown');
+        modeldrop_papa.classList.toggle('show');
+    });
+};
 nav_trans.ontransitionend = async function () {
     nav.classList.add('anim');
     await wait(500);

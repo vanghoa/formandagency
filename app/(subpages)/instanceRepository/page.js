@@ -1,15 +1,68 @@
 import RightPanel from '@/components/RightPanel';
 import ServerRender from '@/components/ServerRender';
 
-export const dynamic = 'force-static';
-export const fetchCache = 'force-cache';
+const fetchNotion = async () => {
+    const res = await fetch(`${process.env.FETCH_URL}/api/notion`, {
+        cache: 'no-store',
+    });
+    try {
+        return await res.json();
+    } catch (err) {
+        console.log('err: ', err);
+        return undefined;
+    }
+};
 
-export default function subpage() {
-    let title = `Instance Repository (WIP)`;
-    let txt = `As an extension of the exhibition, Yeo Workshop and new-media collective TO NEW ENTITIES, will be co-presenting a programme comprising a screening and artist talk. Titled <M>across Cultures, the talk will be introduced by the exhibition’s curator, Rafi Abdullah, who will also be moderating the conversation between the artist Brandon Tay, with writer, media-art professor, as well as the exhibition’s text contributor, Bogna Konior. The conversation will unpack the premises of the exhibition, straddling thematic considerations across the individual and relational aspects of and between agencies and sentience. The session will end with a screening of the Japanese anime television series Parasyte (Madhouse, 2014).
+const instanceHas = ({ data }) => {
+    let mwidth = 1000;
+    return (
+        <div className="IR_flex">
+            {data.map(({ edit, create, vimeo, des }) => {
+                return (
+                    <div key={create} className="flex_item">
+                        <iframe
+                            src={`https://player.vimeo.com/video/${vimeo}?`}
+                            frameBorder="0"
+                            allow="autoplay; fullscreen"
+                            allowFullScreen=""
+                            style={{
+                                '--mwidth': `${(mwidth / 1800) * 100}vmax`,
+                            }}
+                        ></iframe>
+                        <br></br>
+                        <ServerRender
+                            text={`Created at: ${new Date(
+                                create
+                            ).toLocaleString()}
+                    Last edited at: ${new Date(edit).toLocaleString()}`}
+                            mwidth={mwidth}
+                            justify={'flex-start'}
+                            class_="timestamp"
+                        ></ServerRender>
+                        <br></br>
+                        <ServerRender
+                            text={des}
+                            mwidth={mwidth}
+                            justify={'flex-start'}
+                        ></ServerRender>
+                        <br></br>
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
 
-    Saturday, 16th September 2023, 1 - 3pm
-    NTU CCA, The Screening Room, Block 38 Malan Road, #01-06`;
+const instanceEmpty = ({ data }) => {
+    return <></>;
+};
+
+export default async function subpage() {
+    const { message: data } = await fetchNotion();
+    console.log(data);
+    const InstanceCom_ = data == undefined ? instanceEmpty : instanceHas;
+    const title = `Instance Repository`;
+
     return (
         <>
             <br></br>
@@ -21,12 +74,14 @@ export default function subpage() {
                 class_="title"
             ></ServerRender>
             <br></br>
+            <InstanceCom_ data={data}></InstanceCom_>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-            <RightPanel></RightPanel>
+            <br></br>
+            <RightPanel no={5}></RightPanel>
         </>
     );
 }

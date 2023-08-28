@@ -12,5 +12,15 @@ export default function subpage() {
 
     'Artifacts from the Age of Collapse'
     `;
-    return <ModelCom img={'B'} title={title} spec={spec} des={des}></ModelCom>;
+    return (
+        <ModelCom
+            img={'B'}
+            next={'C'}
+            last={'A'}
+            title={title}
+            spec={spec}
+            des={des}
+            no={7}
+        ></ModelCom>
+    );
 }

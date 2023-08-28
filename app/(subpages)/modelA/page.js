@@ -16,5 +16,15 @@ export default function subpage() {
     
     'Records from the Pre-History of Intelligence'
     `;
-    return <ModelCom img={'A'} title={title} spec={spec} des={des}></ModelCom>;
+    return (
+        <ModelCom
+            img={'A'}
+            next={'B'}
+            last={'E'}
+            title={title}
+            spec={spec}
+            des={des}
+            no={6}
+        ></ModelCom>
+    );
 }
