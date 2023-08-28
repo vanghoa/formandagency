@@ -13,7 +13,7 @@ const fetchNotion = async () => {
     }
 };
 
-const instanceHas = ({ data }) => {
+const InstanceHas = ({ data }) => {
     let mwidth = 1000;
     return (
         <div className="IR_flex">
@@ -53,14 +53,15 @@ const instanceHas = ({ data }) => {
     );
 };
 
-const instanceEmpty = ({ data }) => {
-    return <></>;
-};
-
 export default async function subpage() {
-    const { message: data } = await fetchNotion();
-    console.log(data);
-    const InstanceCom_ = data == undefined ? instanceEmpty : instanceHas;
+    let data = [];
+    try {
+        let data_ = await fetchNotion();
+        data = data_.message;
+    } catch (e) {
+        console.log('errbucac2: ', e);
+        data = [];
+    }
     const title = `Instance Repository`;
 
     return (
@@ -74,7 +75,7 @@ export default async function subpage() {
                 class_="title"
             ></ServerRender>
             <br></br>
-            <InstanceCom_ data={data}></InstanceCom_>
+            <InstanceHas data={data}></InstanceHas>
             <br></br>
             <br></br>
             <br></br>

@@ -32,7 +32,7 @@ export async function GET() {
             message: rows,
         });
     } catch (e) {
-        //console.log('err: ', e);
+        console.log('errbucac: ', e);
         return NextResponse.json({ message: [] }, { status: 400 });
     }
 }
