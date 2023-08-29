@@ -68,7 +68,7 @@ export default async function Subpage() {
             <ServerRender
                 text={`
                 Presented by:
-            Yeo workshop
+            Yeo Workshop
             `}
                 mwidth={800}
             ></ServerRender>
