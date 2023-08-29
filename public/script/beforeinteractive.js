@@ -251,7 +251,6 @@ let posarr = [
         },
     },
 ];
-
 // debounceLeft
 const debounceLeft = {
     first: true,
@@ -583,6 +582,10 @@ fetch(`${window.location.origin}/${fonturl}`)
 function readyToExecute() {
     if (++ready == 2) {
         viewportheight();
+        // off for mobile
+        if (matchMedia('(max-width: 600px)').matches) {
+            togglelig_();
+        }
         setprop('--scrollbarw', getScrollbarWidth() + 'px');
         readyToExecute_nav();
         setleading(28, section);

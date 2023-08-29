@@ -183,7 +183,7 @@ export default function subpage() {
                         text={txt}
                         mwidth={700}
                         justify={'flex-start'}
-                        class_="interview_firstline noanim"
+                        class_="interview_firstline noanim tay"
                     ></ServerRender>
                     <br></br>
                 </>

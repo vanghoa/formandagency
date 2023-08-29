@@ -103,7 +103,7 @@ With the text, assist to summarise and close the essay with a final paragraph.
             <ServerRender
                 text={txt2}
                 mwidth={550}
-                class_="noanim"
+                class_="noanim chatgpt"
             ></ServerRender>
             <ServerRender
                 text={'<form>'}

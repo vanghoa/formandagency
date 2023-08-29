@@ -1,9 +1,9 @@
 import { Client } from '@notionhq/client';
 import { NextResponse } from 'next/server';
 
-export const revalidate = 0;
-export const dynamic = 'force-dynamic';
-export const fetchCache = 'only-no-store';
+export const revalidate = 600;
+//export const dynamic = 'force-dynamic';
+//export const fetchCache = 'only-no-store';
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionDatabaseId = process.env.NOTION_DATABASE_ID;
