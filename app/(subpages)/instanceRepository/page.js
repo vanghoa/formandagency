@@ -4,7 +4,9 @@ import ServerRender from '@/components/ServerRender';
 export const revalidate = 600;
 
 const fetchNotion = async () => {
-    const res = await fetch(`${process.env.FETCH_URL}/api/notion`);
+    const res = await fetch(`${process.env.FETCH_URL}/api/notion`, {
+        next: { revalidate: 600 },
+    });
     try {
         return await res.json();
     } catch (err) {
