@@ -67,7 +67,7 @@ export default async function Subpage() {
             <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
             <ServerRender
                 text={`
-                Presented by:
+                Presented by
             Yeo Workshop
             `}
                 mwidth={800}
