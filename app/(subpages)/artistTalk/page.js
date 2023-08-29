@@ -1,5 +1,6 @@
 import RightPanel from '@/components/RightPanel';
 import ServerRender from '@/components/ServerRender';
+import ImageAbout from '@/components/ImageAbout';
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -12,7 +13,9 @@ export default function subpage() {
     Saturday, 16th September 2023, 1 - 3pm
     NTU CCA, The Screening Room, Block 38 Malan Road, #01-06
     
-    Limited seating available. RSVP at: tinyurl.com/FormAndAgencyTalk`;
+    Limited seating available. RSVP at: tinyurl.com/FormAndAgencyTalk
+    
+    Supported by NTU CCA`;
     return (
         <>
             <br></br>
@@ -29,6 +32,8 @@ export default function subpage() {
                 mwidth={850}
                 class_="arttalk"
             ></ServerRender>
+            <br></br>
+            <ImageAbout img={'NTU.png'} size={150} wrappersz={850}></ImageAbout>
             <br></br>
             <br></br>
             <br></br>

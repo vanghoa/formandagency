@@ -484,6 +484,11 @@ section .image img {
     width: var(--finalw);
     height: calc(var(--finalw) * 0.5625);
     border: var(--border_w) var(--white) solid;
+    pointer-events: auto;
+}
+
+.iframe_pe_none .IR_flex > .flex_item iframe {
+    pointer-events: none;
 }
 
 .IR_flex > .flex_item .timestamp p {

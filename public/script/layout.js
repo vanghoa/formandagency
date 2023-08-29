@@ -64,6 +64,12 @@ let nav_unit = nav_fontsz / (20 / 1.4);
                     : 0;
             setprop('--nav_left_max', `${nav_left}px`);
             setprop('--nav_top', `${event.rect.top}px`);
+        })
+        .on('dragstart', function (e) {
+            main.classList.add('iframe_pe_none');
+        })
+        .on('dragend', function (e) {
+            main.classList.remove('iframe_pe_none');
         });
 }
 

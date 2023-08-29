@@ -65,6 +65,14 @@ export default async function Subpage() {
             <br></br>
             <ServerRender text={txt1} mwidth={800}></ServerRender>
             <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
+            <ServerRender
+                text={`
+                Presented by:
+            Yeo workshop
+            `}
+                mwidth={800}
+            ></ServerRender>
+            <ImageAbout img={'YW.png'} size={150} wrappersz={800}></ImageAbout>
             <br></br>
             <ServerRender
                 text={'ABOUT THE ARTIST'}
@@ -84,21 +92,42 @@ export default async function Subpage() {
                 mwidth={1000}
                 justify="flex-start"
             ></ServerRender>
+            <br></br>
             <OutLink link={'www.brandontay.net'}></OutLink>
             <OutLink
                 link={'www.yeoworkshop.com/artists/59-brandon-tay/'}
             ></OutLink>
             <br></br>
             <ServerRender text={abtcolab} mwidth={700}></ServerRender>
-            <OutLink link={'www.rafiabdullah.com'}></OutLink>
+            <OutLink
+                link={'www.rafiabdullah.com'}
+                fontsz={'0.75em'}
+                class_="flex_end"
+            ></OutLink>
             <ServerRender text={bogna} mwidth={700}></ServerRender>
-            <OutLink link={'www.bognamk.com'}></OutLink>
+            <OutLink
+                link={'www.bognamk.com'}
+                fontsz={'0.75em'}
+                class_="flex_end"
+            ></OutLink>
             <ServerRender text={darius} mwidth={700}></ServerRender>
-            <OutLink link={'dariusou.work'}></OutLink>
+            <OutLink
+                link={'dariusou.work'}
+                fontsz={'0.75em'}
+                class_="flex_end"
+            ></OutLink>
             <ServerRender text={tone} mwidth={700}></ServerRender>
-            <OutLink link={'tonewentities.com'}></OutLink>
+            <OutLink
+                link={'tonewentities.com'}
+                fontsz={'0.75em'}
+                class_="flex_end"
+            ></OutLink>
             <ServerRender text={txt3} mwidth={700}></ServerRender>
-            <OutLink link={'www.yeoworkshop.com'}></OutLink>
+            <OutLink
+                link={'www.yeoworkshop.com'}
+                fontsz={'0.75em'}
+                class_="flex_end"
+            ></OutLink>
             <br></br>
             <br></br>
             <br></br>
