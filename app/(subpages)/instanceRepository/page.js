@@ -18,7 +18,8 @@ const fetchNotion = async () => {
 export default async function subpage() {
     const { message: data } = await fetchNotion();
     const mwidth = 1000;
-    const title = `Instance Repository`;
+    const title = `Instance Repository
+    (Work in Progress)`;
 
     return (
         <>

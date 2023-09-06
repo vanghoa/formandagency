@@ -344,6 +344,7 @@ section #landingvideo {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0;
+    z-index: 2;
 }
 
 section #videoload {
@@ -353,17 +354,13 @@ section #videoload {
     left: 0;
     top: 0;
     background-color: var(--purple);
-    z-index: 2;
+    z-index: 1;
     padding: calc(var(--nav_padding) * 2);
     font-size: 1rem;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     word-break: break-all;
-}
-
-section #videoload.play {
-    display: flex;
 }
 
 section #videoload.play span:first-child {
