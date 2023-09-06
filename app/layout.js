@@ -38,6 +38,10 @@ export default function RootLayout({ children }) {
                     strategy="beforeInteractive"
                 />
                 <Script
+                    src="https://player.vimeo.com/api/player.js"
+                    strategy="beforeInteractive"
+                />
+                <Script
                     src="/script/beforeinteractive.js"
                     strategy="beforeInteractive"
                 />

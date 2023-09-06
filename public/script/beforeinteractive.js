@@ -1,4 +1,8 @@
 'use strict';
+console.log(
+    'Website is designed & developed by Bao Anh Bui - @bao.anh.b on instagram'
+);
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const $create = document.createElement.bind(document);
@@ -19,6 +23,7 @@ let nav_tongtrans = [0, 0];
 const nav_links = $$('a.sublink, a.model, #logoouter');
 const fonturl = 'font/AsAbove,SoBelow(Beta47)VF.ttf';
 let font,
+    player,
     modeldrop_papa,
     nav_left = parseInt(getprop('--nav_left_max'));
 let posarr = [
@@ -601,7 +606,7 @@ function readyToExecute_nav() {
         posarr[count].desspan = [...elem.children[1].querySelectorAll('.des')];
         count++;
     });
-    console.log(posarr);
+    //console.log(posarr);
     modeldrop_papa = posarr[nav_numth + 1].elem;
     resizeObserverLeft.observe(nav);
     resizeObserverRight.observe(section);

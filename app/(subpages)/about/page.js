@@ -21,7 +21,7 @@ export default async function Subpage() {
 
     The exhibition in its entirety takes on the sculptures as portals to the interior life of possible non-human entities that may well point towards other dynamic systems, and how we may think through their hybrid natures, to form new and emergent modes of understanding intelligences.
 
-    Supported By:
+    Supported by:
     National Arts Council Singapore
     `;
     const txt2 = `Brandon Tay is a Singaporean artist whose work explores emergent complexities in digital materials. Starting out as a prominent figure in Singapore's underground audio-visual scene, he has more recently expanded his practice into one that engages with varying permutations of projection mapping, digital, computer-generated imagery (CGI), time-based and new media, game environment art.
@@ -67,7 +67,7 @@ export default async function Subpage() {
             <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
             <ServerRender
                 text={`
-                Presented by
+                Presented by:
             Yeo Workshop
             `}
                 mwidth={800}

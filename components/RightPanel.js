@@ -176,6 +176,14 @@ const RightPanel = ({ no }) => {
                     },
                 ];
                 break;
+            case 0:
+                player = new Vimeo.Player($('#landingvideo'));
+                player.on('play', async function () {
+                    await wait(300);
+                    $('#videoload').classList.remove('play');
+                    player.off('play');
+                });
+                break;
         }
 
         if (no <= 5) {
