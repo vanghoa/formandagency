@@ -850,9 +850,8 @@ async function modeldrop_template(check, callback) {
 
 async function calculateLigature(elem) {
     //await wait(200);
-    let lkarr = elem.lkarr == undefined ? [] : elem.lkarr;
+    let lkarr = elem.lkarr ? elem.lkarr : [];
     let div = elem.children[1];
-    div.classList.add('lig');
     let divx = elem.children[0];
 
     let parr = divx.children; //
@@ -1145,25 +1144,27 @@ async function calculateLigature(elem) {
         console.log(thearray);
     }*/
     //
-    render_arr_arr = (function flattenNestedArray(array) {
-        const _1 = [];
-        for (const nestedArray of array) {
-            let _2 = [];
-            for (const innerArray of nestedArray) {
-                let _3 = [];
-                for (const item of innerArray) {
-                    if (typeof item === 'string') {
-                        _3.push(...item);
-                    } else {
-                        _3.push(item);
-                    }
-                }
-                _2.push(_3);
-            }
-            _1.push(_2);
-        }
-        return _1;
-    })(render_arr_arr);
+    lkarr.length > 0
+        ? (render_arr_arr = (function flattenNestedArray(array) {
+              const _1 = [];
+              for (const nestedArray of array) {
+                  let _2 = [];
+                  for (const innerArray of nestedArray) {
+                      let _3 = [];
+                      for (const item of innerArray) {
+                          if (typeof item === 'string') {
+                              _3.push(...item);
+                          } else {
+                              _3.push(item);
+                          }
+                      }
+                      _2.push(_3);
+                  }
+                  _1.push(_2);
+              }
+              return _1;
+          })(render_arr_arr))
+        : [];
     let char_count = 0;
     let lkarr_i = 0;
     let lkarr_i_temp = 0;
@@ -1178,6 +1179,8 @@ async function calculateLigature(elem) {
         for (let i = 0; i < render_arr_arr[x].length; i++) {
             let baretxt = '';
             for (let k = 0; k < render_arr_arr[x][i].length; k++) {
+                let renderitem = render_arr_arr[x][i][k];
+                renderitem.classList?.add(renderitem.wght);
                 if (lkarr[lkarr_i]?.s == char_count) {
                     lkarr_t_i = char_count;
                     lkarr_i_temp = lkarr_i;
@@ -1203,16 +1206,16 @@ async function calculateLigature(elem) {
                             lkarr[lkarr_i_temp]?.txt.length -
                             1
                 ) {
-                    atag.append(render_arr_arr[x][i][k]);
+                    atag.append(renderitem);
                     lkarr_t_i++;
-                } else if (typeof render_arr_arr[x][i][k] == 'string') {
-                    baretxt += render_arr_arr[x][i][k];
+                } else if (typeof renderitem == 'string') {
+                    baretxt += renderitem;
                 } else {
                     if (baretxt == '') {
-                        render_arr_arr[x][i][k].style.marginLeft = '';
-                        p_.append(render_arr_arr[x][i][k]);
+                        renderitem.style.marginLeft = '';
+                        p_.append(renderitem);
                     } else {
-                        p_.append(baretxt, render_arr_arr[x][i][k]);
+                        p_.append(baretxt, renderitem);
                     }
                     baretxt = '';
                 }
@@ -1231,19 +1234,7 @@ async function calculateLigature(elem) {
 
     // animation
     await wait(100);
-    let allspan = elem.querySelectorAll('span');
-    if (allspan.length > 0) {
-        elem.classList.add('anim');
-        /*
-        allspan[0].ontransitionend = (event) => {
-            elem.classList.remove('anim');
-            allspan[0].ontransitionend = null;
-        };
-        */
-        for (let i = 0; i < allspan.length; i++) {
-            allspan[i].classList.add(allspan[i].wght);
-        }
-    }
+    div.classList.add('lig');
     //
 }
 

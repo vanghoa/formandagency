@@ -15,7 +15,7 @@ export default function ServerRender({
             style={{ fontSize: fontsz, justifyContent: justify }}
         >
             <div
-                className="wrapper"
+                className="wrapper anim"
                 style={{ '--min_w': `${(mwidth / 1800) * 100}vmax` }}
             >
                 <div className="backend">
@@ -30,7 +30,7 @@ export default function ServerRender({
                         );
                     })}
                 </div>
-                <div className="frontend lig">
+                <div className="frontend">
                     {maparr.map((line, index) => {
                         if (line.trim().replace(/\s+/g, ' ') == '') {
                             return (
