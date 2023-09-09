@@ -305,11 +305,14 @@ const debounceRight = {
     _: function () {
         let this_ = this;
         if (this.first) {
+            /*
             let allwrappers = $$('.wrapper');
             allwrappers.forEach((elem) => {
                 //elem.classList.add('anim');
                 elem.children[1].classList.remove('lig');
             });
+            */
+            main.classList.remove('lig');
             this.first = false;
         }
 
@@ -619,6 +622,8 @@ async function rightPanel() {
         $$('.wrapper').forEach((elem) => {
             calculateLigature(elem);
         });
+        await wait(200);
+        main.classList.add('lig');
     }
 }
 
@@ -848,7 +853,7 @@ async function modeldrop_template(check, callback) {
     nav.classList.toggle('help');
 }
 
-async function calculateLigature(elem) {
+function calculateLigature(elem) {
     //await wait(200);
     let lkarr = elem.lkarr ? elem.lkarr : [];
     let div = elem.children[1];
@@ -1233,8 +1238,10 @@ async function calculateLigature(elem) {
     div.style.display = '';
 
     // animation
+    /*
     await wait(100);
     div.classList.add('lig');
+    */
     //
 }
 

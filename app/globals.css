@@ -456,23 +456,23 @@ section .wrapper .frontend span {
     font-kerning: none;
 }
 
-section .lig span.alt {
+.lig section .lig span.alt {
     font-variation-settings: 'wght' var(--lig);
 }
 
-section .lig span.altshort {
+.lig section .lig span.altshort {
     font-variation-settings: 'wght' var(--lig_cap);
 }
 
-section .lig span.alt.des {
+.lig section .lig span.alt.des {
     font-variation-settings: 'wght' var(--lig_des);
 }
 
-section .lig span.alt.letter_t {
+.lig section .lig span.alt.letter_t {
     font-variation-settings: 'wght' calc(var(--lig) + var(--lig_extra));
 }
 
-section .lig span.altshort.letter_t {
+.lig section .lig span.altshort.letter_t {
     font-variation-settings: 'wght' calc(var(--lig_cap) + var(--lig_extra));
 }
 

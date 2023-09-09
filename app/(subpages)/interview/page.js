@@ -176,14 +176,14 @@ export default function subpage() {
                         text={bogna[i]}
                         mwidth={700}
                         justify={'flex-end'}
-                        class_="interview_firstline noanim"
+                        class_="interview_firstline"
                     ></ServerRender>
                     <br></br>
                     <ServerRender
                         text={txt}
                         mwidth={700}
                         justify={'flex-start'}
-                        class_="interview_firstline noanim tay"
+                        class_="interview_firstline tay"
                     ></ServerRender>
                     <br></br>
                 </>

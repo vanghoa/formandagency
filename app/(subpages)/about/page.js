@@ -11,24 +11,28 @@ export default async function Subpage() {
     const des = `A solo exhibition by Brandon Tay
     Exhibition Dates: 26 August – 1 October 2023
     Artist Talk: 16th September 2023`;
-    const txt1 = `Yeo Workshop is pleased to present a solo exhibition by Brandon Tay, a Singaporean artist whose practice is concerned with the emergent complexities related to digital materials. Primarily working through digital media, mediated sculptures, and the moving image, Tay’s works often complicate the distinctions between the tangible and the incorporeal, whilst addressing and contending with the relationality of their complex natures.
-
-    For his inaugural solo exhibition, Form & Agency, Brandon Tay introduces a new body of work that explores the materiality of the digital, through an engagement with 3D-printed sculptures, live-simulations, and virtual ecosystems. Introducing an element of experimentation, the exhibition functions on three different stacks — the physical artworks in the gallery space, the virtual components of the artworks, and a live and interactive game simulation — that operate both independently and in relation to each other.
-
-    At the core of the exhibition are five agents — dynamic actors — that are composed of 3D printed sculptures embedded with screens, sensors, as well as networking capabilities. Taking on different forms, they act as metaphors for various modes of intelligence: from adversarial neural networks, complex systems in nature, blackboxing, cybernetic decision trees, and reinforcement learning. To-gether, the networked sculptures transform the gallery space into an interactive habitat where visitors can affect the behaviours and evolution of a dynamic environment of chimeric hybrid lifeforms, constructed via game-engine technology.
-
+    const txt1 = [
+        `Yeo Workshop is pleased to present a solo exhibition by Brandon Tay, a Singaporean artist whose practice is concerned with the emergent complexities related to digital materials. Primarily working through digital media, mediated sculptures, and the moving image, Tay’s works often complicate the distinctions between the tangible and the incorporeal, whilst addressing and contending with the relationality of their complex natures.`,
+        `
+    For his inaugural solo exhibition, Form & Agency, Brandon Tay introduces a new body of work that explores the materiality of the digital, through an engagement with 3D-printed sculptures, live-simulations, and virtual ecosystems. Introducing an element of experimentation, the exhibition functions on three different stacks — the physical artworks in the gallery space, the virtual components of the artworks, and a live and interactive game simulation — that operate both independently and in relation to each other.`,
+        `
+    At the core of the exhibition are five agents — dynamic actors — that are composed of 3D printed sculptures embedded with screens, sensors, as well as networking capabilities. Taking on different forms, they act as metaphors for various modes of intelligence: from adversarial neural networks, complex systems in nature, blackboxing, cybernetic decision trees, and reinforcement learning. To-gether, the networked sculptures transform the gallery space into an interactive habitat where visitors can affect the behaviours and evolution of a dynamic environment of chimeric hybrid lifeforms, constructed via game-engine technology.`,
+        `
     Accompanying the sculptures is a real-time livestream projection of a digital environment in which the agents react not only with each other, but with the presence of visitors in real time, offering a contextual basis of the agents in their native habitat.
 
     The exhibition in its entirety takes on the sculptures as portals to the interior life of possible non-human entities that may well point towards other dynamic systems, and how we may think through their hybrid natures, to form new and emergent modes of understanding intelligences.
 
     Supported by:
     National Arts Council Singapore
-    `;
-    const txt2 = `Brandon Tay is a Singaporean artist whose work explores emergent complexities in digital materials. Starting out as a prominent figure in Singapore's underground audio-visual scene, he has more recently expanded his practice into one that engages with varying permutations of projection mapping, digital, computer-generated imagery (CGI), time-based and new media, game environment art.
-
+    `,
+    ];
+    const txt2 = [
+        `Brandon Tay is a Singaporean artist whose work explores emergent complexities in digital materials. Starting out as a prominent figure in Singapore's underground audio-visual scene, he has more recently expanded his practice into one that engages with varying permutations of projection mapping, digital, computer-generated imagery (CGI), time-based and new media, game environment art.`,
+        `
     In his practice, he complicates distinctions between the tangible and incorporeal, both in composition and well as subject matter, often looking into thematics surrounding the relationships between history and futurity, digital materiality, and contemporary philosophies.  Brandon views digital materials as irreducible components that combine dynamically to create a more complex whole. Working with diverse components, whether fragments of 3D geometry, prompt tokens or 3D avatars of human beings, he combines these with out-of-context factors — such as doom-scrolling induced trance states, automatic writing, game physics and the likes — to simulate something that feels larger than its parts in unpredictable ways.
-
-    As a collaborator and individually, his work has been shown at Art Dubai, tanzhaus nrw Düsseldorf, Kyoto Dance Experiment, Singapore International Festival of the Arts, M1 Fringe Festival among others. His works are also in private and public collections such as the Australian Centre for Moving Images (ACMI), Melbourne/Naarm.`;
+    
+    As a collaborator and individually, his work has been shown at Art Dubai, tanzhaus nrw Düsseldorf, Kyoto Dance Experiment, Singapore International Festival of the Arts, M1 Fringe Festival among others. His works are also in private and public collections such as the Australian Centre for Moving Images (ACMI), Melbourne/Naarm.`,
+    ];
     const abtcolab = `ABOUT THE COLLABORATORS
 
     Rafi Abdullah (b. 1991) is a curator based out of Singapore with close to a decade of experience working in varying capacities across cultural institutions and museums (Indian Heritage Centre, Institute of Contemporary Arts Singapore, The Private Museum) and art galleries (Wetterling Teo Gallery, Hatch Art Project) in Singapore. He was a selected participant in the curatorial workshops, Staging and the Exhibition (2018) hosted by Institute of Contemporary Arts (ICA) Singapore in partnership with the Department of Visual Culture, Goldsmiths University of London; as well as the Workshops for Emerging Arts Professionals (2020) hosted by Para Site, Hong Kong. He has also written for several artist catalogues and books, as well as for/in journals, platforms, and institutions such as Yavuz Gallery, Sullivan+Strumpf, National Gallery Singapore, and So Far. Most recently, he was the co-curator of the digital exhibition Many Beliefs, One Future 2.0 (2022), and curator for the digital billboard art festival Crossroads (2022), and the exhibition Poor Imagination (2019).
@@ -63,7 +67,15 @@ export default async function Subpage() {
                 justify={'flex-start'}
             ></ServerRender>
             <br></br>
-            <ServerRender text={txt1} mwidth={800}></ServerRender>
+            {txt1.map((txt, i) => {
+                return (
+                    <ServerRender
+                        text={txt}
+                        mwidth={800}
+                        key={`${i}txt1`}
+                    ></ServerRender>
+                );
+            })}
             <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
             <ServerRender
                 text={`
@@ -87,11 +99,16 @@ export default async function Subpage() {
                 class_="model_img"
             ></ImageAbout>
             <br></br>
-            <ServerRender
-                text={txt2}
-                mwidth={1000}
-                justify="flex-start"
-            ></ServerRender>
+            {txt2.map((txt, i) => {
+                return (
+                    <ServerRender
+                        text={txt}
+                        mwidth={1000}
+                        key={`${i}txt2`}
+                        justify="flex-start"
+                    ></ServerRender>
+                );
+            })}
             <br></br>
             <OutLink link={'www.brandontay.net'}></OutLink>
             <OutLink

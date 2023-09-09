@@ -8,25 +8,27 @@ export default function subpage() {
     let title = `Form Follows Fiction
     By Rafi Abdullah`;
     let txt1 = `What are some ways that fiction has influenced form in early human history?`;
-    let txt2 = `
+    let txt2 = [
+        `
     Early human history witnessed the profound influence of fiction on various aesthetic forms, shaping art, storytelling, and cultural expression in significant ways. Here are some ways in which fiction has affected aesthetic forms in ancient civilizations:
 
-    Oral Traditions and Mythology. Fictional narratives and myths were passed down orally from generation to generation in many ancient cultures. These myths often featured gods, heroes, and supernatural beings, and they inspired the visual arts, such as pottery, sculpture, and paintings. For example, Greek mythology greatly influenced the art and architecture of ancient Greece, with gods and heroes depicted in various artistic forms.
-    
+    Oral Traditions and Mythology. Fictional narratives and myths were passed down orally from generation to generation in many ancient cultures. These myths often featured gods, heroes, and supernatural beings, and they inspired the visual arts, such as pottery, sculpture, and paintings. For example, Greek mythology greatly influenced the art and architecture of ancient Greece, with gods and heroes depicted in various artistic forms.`,
+        `
     Epic Poetry. Epic poems like the "Epic of Gilgamesh" in Mesopotamia, the "Iliad" and the "Odyssey" in ancient Greece, and the "Ramayana" and the "Mahabharata" in India conveyed fictional stories of heroism, adventure, and moral dilemmas. These poems were recited or sung and often included vivid descriptions that inspired artistic representations of the narratives.
     
-    Religious Texts and Iconography. Many religious texts, such as the Bible, the Quran, and the Vedas, contain fictional parables, allegories, and stories that have influenced religious art, including paintings, sculptures, stained glass, and mosaics. These artistic forms were used to illustrate and convey the moral and spiritual lessons contained within these texts.
-    
+    Religious Texts and Iconography. Many religious texts, such as the Bible, the Quran, and the Vedas, contain fictional parables, allegories, and stories that have influenced religious art, including paintings, sculptures, stained glass, and mosaics. These artistic forms were used to illustrate and convey the moral and spiritual lessons contained within these texts.`,
+        `
     Fables and Morality Tales. Aesop's fables and similar collections of moral stories provided valuable lessons through fictional characters and scenarios. These tales often featured anthropomorphic animals and were depicted in various visual art forms, from ancient Greek vase paintings to medieval illuminated manuscripts.
     
-    Fictionalised Biographies and Portraiture. In ancient Egypt, for example, the practice of creating fictionalised biographies for pharaohs and other elites influenced the depiction of rulers in art. Portraits were idealised to reflect the virtues and accomplishments attributed to these individuals.
-    
+    Fictionalised Biographies and Portraiture. In ancient Egypt, for example, the practice of creating fictionalised biographies for pharaohs and other elites influenced the depiction of rulers in art. Portraits were idealised to reflect the virtues and accomplishments attributed to these individuals.`,
+        `
     Tribal and Indigenous Art. Many indigenous cultures around the world used fictional narratives, legends, and creation stories as sources of inspiration for their artistic expressions. This includes storytelling through traditional songs, dances, and visual arts, often reflecting the cultural heritage and beliefs of these communities.
     
-    Ceremonial Artefacts. Fictional narratives often played a role in the creation of ceremonial and ritualistic objects. For instance, masks used in tribal rituals often represented mythological or fictional beings, contributing to the rich aesthetics of these cultural practices.
-
+    Ceremonial Artefacts. Fictional narratives often played a role in the creation of ceremonial and ritualistic objects. For instance, masks used in tribal rituals often represented mythological or fictional beings, contributing to the rich aesthetics of these cultural practices.`,
+        `
     In summary, fiction has been a powerful force in shaping aesthetic forms throughout early human history. These fictional narratives, whether rooted in mythology, religious texts, or folklore, served as a wellspring of inspiration for artists, influencing the development of various artistic mediums and expressions. They not only entertained and educated but also enriched the cultural and artistic heritage of societies across the ages.
-    `;
+`,
+    ];
     let txt3 = `
     The grounds for negotiating the affects of fiction onto material form - as elucidated above by the “Artificial” Intelligence (AI) hive mind that is ChatGPT - is not tethered only to more recent developments of speculative fiction in the contemporary. It has in fact predated any recent anxieties caused by the accelerating zeitgeist of the 21st Century.
 
@@ -95,47 +97,32 @@ With the text, assist to summarise and close the essay with a final paragraph.
                 class_="title"
             ></ServerRender>
             <br></br>
-            <ServerRender
-                text={txt1}
-                mwidth={1000}
-                class_="noanim"
-            ></ServerRender>
-            <ServerRender
-                text={txt2}
-                mwidth={550}
-                class_="noanim chatgpt"
-            ></ServerRender>
-            <ServerRender
-                text={'<form>'}
-                mwidth={1000}
-                class_="noanim"
-            ></ServerRender>
+            <ServerRender text={txt1} mwidth={1000}></ServerRender>
+            {txt2.map((txt, i) => {
+                return (
+                    <ServerRender
+                        text={txt}
+                        mwidth={550}
+                        class_="chatgpt"
+                        key={`${i}txt2`}
+                    ></ServerRender>
+                );
+            })}
+            <ServerRender text={'<form>'} mwidth={1000}></ServerRender>
             <ServerRender
                 text={txt3}
                 mwidth={1000}
                 class_="txt3 noanim"
             ></ServerRender>
-            <ServerRender
-                text={'</form>'}
-                mwidth={1000}
-                class_="noanim"
-            ></ServerRender>
-            <ServerRender
-                text={txt4}
-                mwidth={1000}
-                class_="noanim"
-            ></ServerRender>
-            <ServerRender
-                text={txt5}
-                mwidth={1000}
-                class_="noanim"
-            ></ServerRender>
+            <ServerRender text={'</form>'} mwidth={1000}></ServerRender>
+            <ServerRender text={txt4} mwidth={1000}></ServerRender>
+            <ServerRender text={txt5} mwidth={1000}></ServerRender>
             <ServerRender
                 text={footnote}
                 fontsz={'0.75em'}
                 mwidth={800}
                 justify="flex-start"
-                class_="footnote noanim"
+                class_="footnote"
             ></ServerRender>
             <br></br>
             <br></br>

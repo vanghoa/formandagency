@@ -1,3 +1,6 @@
+'use client';
+import { useEffect, useRef } from 'react';
+
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
 
@@ -8,6 +11,36 @@ export default function ServerRender({
     justify = 'flex-end',
     class_ = '',
 }) {
+    const targetRef = useRef(null);
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0,
+        };
+
+        const callback = async (entries) => {
+            for (let entry of entries) {
+                if (entry.isIntersecting) {
+                    await wait(1000);
+                    targetRef?.current?.classList.add('lig');
+                } else {
+                    targetRef?.current?.classList.remove('lig');
+                }
+            }
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        if (targetRef?.current) {
+            observer.observe(targetRef.current);
+        }
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
     let maparr = text.split('\n');
     return (
         <div
@@ -23,14 +56,10 @@ export default function ServerRender({
                         if (line == '') {
                             line = ' ';
                         }
-                        return (
-                            <>
-                                <p key={index}>{line}</p>
-                            </>
-                        );
+                        return <p key={index}>{line}</p>;
                     })}
                 </div>
-                <div className="frontend">
+                <div className="frontend" ref={targetRef}>
                     {maparr.map((line, index) => {
                         if (line.trim().replace(/\s+/g, ' ') == '') {
                             return (
@@ -39,11 +68,7 @@ export default function ServerRender({
                                 </p>
                             );
                         }
-                        return (
-                            <>
-                                <p key={index}>{line}</p>
-                            </>
-                        );
+                        return <p key={index}>{line}</p>;
                     })}
                 </div>
             </div>
