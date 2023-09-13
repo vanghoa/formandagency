@@ -116,7 +116,11 @@ With the text, assist to summarise and close the essay with a final paragraph.
             ></ServerRender>
             <ServerRender text={'</form>'} mwidth={1000}></ServerRender>
             <ServerRender text={txt4} mwidth={1000}></ServerRender>
-            <ServerRender text={txt5} mwidth={1000}></ServerRender>
+            <ServerRender
+                text={txt5}
+                mwidth={550}
+                class_="chatgpt"
+            ></ServerRender>
             <ServerRender
                 text={footnote}
                 fontsz={'0.75em'}

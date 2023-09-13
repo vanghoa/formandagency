@@ -591,7 +591,12 @@ section .image img {
         width: calc(var(--cal_w) - 3rem);
     }
 
-    .tay {
+    section .flex {
+        justify-content: flex-start !important;
+    }
+
+    section .tay,
+    section .chatgpt {
         justify-content: flex-end !important;
     }
 }

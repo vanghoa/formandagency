@@ -30,11 +30,11 @@ export default function RootLayout({ children }) {
             <Script src="/script/layout.js" />
             <body className={`${asabovesobelow.variable} ${Noto.variable}`}>
                 <Script
-                    src="/script/interact.min.js"
+                    src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"
                     strategy="beforeInteractive"
                 />
                 <Script
-                    src="/script/opentype.js"
+                    src="https://cdn.jsdelivr.net/npm/opentype.js"
                     strategy="beforeInteractive"
                 />
                 <Script

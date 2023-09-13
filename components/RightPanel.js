@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 
 const RightPanel = ({ no }) => {
     useEffect(() => {
-        nav_links[no].classList.add('underline');
+        if (no > 0) {
+            nav_links[no].classList.add('underline');
+        }
         switch (no) {
             case 2:
                 $('.txt3 .wrapper').lkarr = [
@@ -164,6 +166,30 @@ const RightPanel = ({ no }) => {
                         txt: '[11]',
                         id: 'fn11_',
                         href: 'fn11',
+                    },
+                ];
+                break;
+            case 1:
+                $('.credit .wrapper').lkarr = [
+                    {
+                        s: 16,
+                        txt: 'Rafi Abdullah',
+                        href: 'https://www.rafiabdullah.com/',
+                    },
+                    {
+                        s: 45,
+                        txt: 'Studio Darius Ou',
+                        href: 'https://www.dariusou.work',
+                    },
+                    {
+                        s: 80,
+                        txt: 'Amirul Nazree',
+                        href: 'https://www.cargocollective.com/amirulnazree',
+                    },
+                    {
+                        s: 108,
+                        txt: 'Bao Anh Bui',
+                        href: 'https://vanghoa.github.io/',
                     },
                 ];
                 break;

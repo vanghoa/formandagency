@@ -273,30 +273,34 @@ const debounceLeft = {
         this.timeout = setTimeout(function () {
             this_.timeout = null;
             this_.first = true;
-            if (
-                nav_trans.getBoundingClientRect().width <
-                0.6 * nav_fontsz + nav_padding * 2
-            ) {
-                posarr[nav_numth + 1].elem.classList.remove('dropdown', 'show');
-                nav.classList.add('small');
-                for (let i = 1; i < posarr.length; i++) {
-                    posarr[i].elem.style.transform = '';
-                }
-            } else {
-                nav.classList[
-                    nav_trans.getBoundingClientRect().width <
-                    12.3 * nav_fontsz + nav_padding * 2
-                        ? 'add'
-                        : 'remove'
-                ]('medium');
-                nav_resize_handle();
-                if (posarr[nav_numth + 1].elem.classList.contains('dropdown')) {
-                    modeldrop_template(true, () => {});
-                }
-            }
+            endResizeendDrag();
         }, 300);
     },
 };
+
+function endResizeendDrag() {
+    if (
+        nav_trans.getBoundingClientRect().width <
+        0.6 * nav_fontsz + nav_padding * 2
+    ) {
+        posarr[nav_numth + 1].elem.classList.remove('dropdown', 'show');
+        nav.classList.add('small');
+        for (let i = 1; i < posarr.length; i++) {
+            posarr[i].elem.style.transform = '';
+        }
+    } else {
+        nav.classList[
+            nav_trans.getBoundingClientRect().width <
+            12.3 * nav_fontsz + nav_padding * 2
+                ? 'add'
+                : 'remove'
+        ]('medium');
+        nav_resize_handle();
+        if (posarr[nav_numth + 1].elem.classList.contains('dropdown')) {
+            modeldrop_template(true, () => {});
+        }
+    }
+}
 
 // debounceRight
 const debounceRight = {
@@ -630,7 +634,10 @@ async function rightPanel() {
 function nav_resize_handle() {
     let tongtrans = 0;
     let navw = Math.floor(nav_trans.getBoundingClientRect().width / nav_unit);
-    let logocheck = Math.random() > 0.5 && posarr[0].nln_.tong < navw;
+    let logocheck =
+        navw > 200 &&
+        posarr[0].nln_.tong < navw &&
+        navw > (innerWidth / nav_unit) * (1 / 3);
     nav_logoouter.classList[logocheck ? 'add' : 'remove']('logo2');
     for (let i = 0; i < ascdesarr.length; i++) {
         ascdesarr[i].classList.remove('alt');
@@ -1111,6 +1118,12 @@ function calculateLigature(elem) {
     {
         let char_count = 0;
         let thearray = [];
+        const linklist = [
+            `Rafi Abdullah`,
+            `Studio Darius Ou`,
+            `Amirul Nazree`,
+            `Bao Anh Bui`,
+        ];
         let buloz = (function flattenNestedArray(array) {
             const _1 = [];
             for (const nestedArray of array) {
@@ -1134,20 +1147,28 @@ function calculateLigature(elem) {
         for (let x = 0; x < buloz.length; x++) {
             for (let i = 0; i < buloz[x].length; i++) {
                 for (let k = 0; k < buloz[x][i].length; k++) {
-                    if (buloz[x][i][k] == 'w') {
-                        if (buloz[x][i].slice(k, k + 3).join('') == 'www') {
-                            thearray.push({
-                                start: char_count,
-                                txt: buloz[x][i].slice(k, k + 10).join(''),
-                            });
+                    linklist.forEach((vl) => {
+                        if (buloz[x][i][k] == vl[0]) {
+                            if (
+                                buloz[x][i].slice(k, k + vl.length).join('') ==
+                                vl
+                            ) {
+                                thearray.push({
+                                    start: char_count,
+                                    txt: buloz[x][i]
+                                        .slice(k, k + vl.length)
+                                        .join(''),
+                                });
+                                return;
+                            }
                         }
-                    }
+                    });
                     char_count++;
                 }
             }
         }
         console.log(thearray);
-    }*/
+    } /**/
     //
     lkarr.length > 0
         ? (render_arr_arr = (function flattenNestedArray(array) {

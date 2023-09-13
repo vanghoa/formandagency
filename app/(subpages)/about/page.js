@@ -46,9 +46,20 @@ export default async function Subpage() {
     const tone = `
     TO NEW ENTITIES is an art and creative collective that builds media worlds. They believe in telling character-driven stories that emphasise and celebrate imagination and creativity in an increasingly complex and intertwined world. They operate through curation, digital environment and exhibition making, digital and tech support for artists, film programming, the production of art, and more. They have received coverage by media platforms both locally and internationally such as Female Magazine, Mens Folio, and Stir World. Most recently, they curated and organised Crossroads (2022) the first digital billboard art festival in Singapore, the exhibition Contemporary Gestures (2022) representing Singapore on international platform The Upside Space. They were also selected for participation in the independent art book fair SPRINT Milano (2022) in Spazzio Maiocchi, Milan; the inaugural BoluevArt Festival, Art in Space, Dubai; and the Rockaway Art Festival, hosted by Rhizome and Do Not Research at The Locker Room, New York.
 `;
-    const txt3 = `ABOUT THE GALLERY
+    const txt3 = `
+ABOUT THE GALLERY
     
     Yeo Workshop is a leading art gallery based in Gillman Barracks, Singapore since 2013. It shows innovative practices of contemporary artists. Covering a multi-disciplinary approach, the gallery defines itself by its progressive engagements.
+`;
+    const credit = `
+CREDITS
+
+    Curator: Rafi Abdullah
+    Graphic design: Studio Darius Ou
+    Exhibition design: Amirul Nazree
+    Website build: Bao Anh Bui
+    Exhibition Support: Charmaine Kok, Nuhayd Naufal, Kyara Devaser
+    Exhibition Photography: Jonathan Tan
 `;
     return (
         <>
@@ -145,6 +156,13 @@ export default async function Subpage() {
                 fontsz={'0.75em'}
                 class_="flex_end"
             ></OutLink>
+            <ServerRender
+                text={credit}
+                fontsz={'0.75em'}
+                mwidth={1000}
+                justify="flex-start"
+                class_="credit"
+            ></ServerRender>
             <br></br>
             <br></br>
             <br></br>

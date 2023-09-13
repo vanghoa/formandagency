@@ -36,6 +36,8 @@ let nav_padding =
     ) * nav_fontsz;
 let nav_unit = nav_fontsz / (20 / 1.4);
 
+let smallcheckdrag = true;
+
 //nav reisze
 {
     interact(nav_handle)
@@ -58,18 +60,29 @@ let nav_unit = nav_fontsz / (20 / 1.4);
             inertia: true,
         })
         .on('dragmove', function (event) {
-            nav_left =
-                event.rect.left > 5.3 * nav_fontsz + nav_padding * 2
-                    ? event.rect.left
-                    : 0;
+            if (smallcheckdrag) {
+                nav_left =
+                    event.rect.left > 5.3 * nav_fontsz + nav_padding * 2
+                        ? event.rect.left
+                        : 0;
+            } else {
+                nav_left = event.rect.left > 175 ? event.rect.left : 175;
+            }
             setprop('--nav_left_max', `${nav_left}px`);
             setprop('--nav_top', `${event.rect.top}px`);
         })
         .on('dragstart', function (e) {
             main.classList.add('iframe_pe_none');
+            if (nav.classList.contains('small')) {
+                nav.classList.remove('small');
+                nav_left = 175;
+                setprop('--nav_left_max', `175px`);
+                smallcheckdrag = false;
+            }
         })
         .on('dragend', function (e) {
             main.classList.remove('iframe_pe_none');
+            smallcheckdrag = true;
         });
 }
 
