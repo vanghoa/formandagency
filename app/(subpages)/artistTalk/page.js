@@ -22,7 +22,7 @@ export default function subpage() {
             <ServerRender
                 text={title}
                 mwidth={800}
-                fontsz={'1.8em'}
+                fontsz={'1rem'}
                 justify={'flex-start'}
                 class_="title"
             ></ServerRender>

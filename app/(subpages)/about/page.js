@@ -58,7 +58,7 @@ CREDITS
     Graphic design: Studio Darius Ou
     Exhibition design: Amirul Nazree
     Website build: Bao Anh Bui
-    Exhibition Support: Charmaine Kok, Nuhayd Naufal, Kyara Devaser
+    Exhibition Support: Charmaine Kok, Nuhayd Naufal, Kyara Devaser, Nghia Phung
     Exhibition Photography: Jonathan Tan
 `;
     return (
@@ -67,7 +67,7 @@ CREDITS
             <ServerRender
                 text={title}
                 mwidth={800}
-                fontsz={'1.8em'}
+                fontsz={'1rem'}
                 justify={'flex-start'}
                 class_="title"
             ></ServerRender>

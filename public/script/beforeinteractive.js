@@ -279,6 +279,8 @@ const debounceLeft = {
 };
 
 function endResizeendDrag() {
+    nav_trans_var == 0 ? setprop('--nav_translate_var', '0px') : {};
+    nav_trans_var = 0;
     if (
         nav_trans.getBoundingClientRect().width <
         0.6 * nav_fontsz + nav_padding * 2
@@ -286,7 +288,7 @@ function endResizeendDrag() {
         posarr[nav_numth + 1].elem.classList.remove('dropdown', 'show');
         nav.classList.add('small');
         for (let i = 1; i < posarr.length; i++) {
-            posarr[i].elem.style.transform = '';
+            setprop(`--nav${i}x`, 0);
         }
     } else {
         nav.classList[
@@ -687,9 +689,8 @@ function nav_resize_handle() {
         let translateby =
             (ascORdes ? inasc - outasc[0] : outdes[0] - indes) + tongtrans;
         //let translateby = outdes[0] + tongtrans - indes;
-        posarr[
-            index
-        ].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit)))`;
+        //posarr[index].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit) + var(--nav${index})))`;
+        setprop(`--nav${index}x`, translateby);
         if (index == nav_numth + 1) {
             nav_tongtrans = tongtrans;
         }
@@ -850,9 +851,8 @@ async function modeldrop_template(check, callback) {
             false
         );
         let translateby = inasc - outasc[0] + nav_tongtrans;
-        posarr[
-            nav_numth + 1
-        ].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit)))`;
+        //posarr[nav_numth + 1].elem.style.transform = `translateX(calc(${translateby} * var(--nav_unit) + var(--nav6)))`;
+        setprop(`--nav${nav_numth + 1}x`, translateby);
         posarr[nav_numth + 1]['ascspan'][outasc[1]].classList.add('alt');
     }
     callback();

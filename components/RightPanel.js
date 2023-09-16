@@ -215,7 +215,10 @@ const RightPanel = ({ no }) => {
             nav_left += new_nav_left();
         }
 
-        setprop('--nav_left_max', `${nav_left}px`);
+        setprop(
+            '--nav_left_max',
+            `${innerWidth <= 600 && no > 0 ? 0 : nav_left}px`
+        );
         debounceRight._();
         return () => {
             nav_links.forEach((elem) => {

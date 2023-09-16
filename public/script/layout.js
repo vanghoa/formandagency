@@ -37,6 +37,7 @@ let nav_padding =
 let nav_unit = nav_fontsz / (20 / 1.4);
 
 let smallcheckdrag = true;
+let nav_trans_var = 0;
 
 //nav reisze
 {
@@ -68,10 +69,14 @@ let smallcheckdrag = true;
             } else {
                 nav_left = event.rect.left > 175 ? event.rect.left : 175;
             }
+            nav_trans_var +=
+                event.delta.x > 0 ? event.delta.x / 1.7 : event.delta.x / 2.5;
             setprop('--nav_left_max', `${nav_left}px`);
             setprop('--nav_top', `${event.rect.top}px`);
+            setprop('--nav_translate_var', `${nav_trans_var}px`);
         })
         .on('dragstart', function (e) {
+            nav_trans_var = 0;
             main.classList.add('iframe_pe_none');
             if (nav.classList.contains('small')) {
                 nav.classList.remove('small');
@@ -81,6 +86,8 @@ let smallcheckdrag = true;
             }
         })
         .on('dragend', function (e) {
+            nav_trans_var == 0 ? setprop('--nav_translate_var', '0px') : {};
+            nav_trans_var = 0;
             main.classList.remove('iframe_pe_none');
             smallcheckdrag = true;
         });

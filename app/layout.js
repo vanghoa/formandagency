@@ -81,6 +81,10 @@ export default function RootLayout({ children }) {
                                 className="sublink"
                                 href="/about"
                                 prefetch={true}
+                                style={{
+                                    transform:
+                                        'translateX(calc(var(--nav1x) * var(--nav_unit) + var(--nav1)))',
+                                }}
                             >
                                 <span>a</span>
                                 <span>
@@ -93,6 +97,10 @@ export default function RootLayout({ children }) {
                                 className="sublink"
                                 href="/curatorialText"
                                 prefetch={true}
+                                style={{
+                                    transform:
+                                        'translateX(calc(var(--nav2x) * var(--nav_unit) + var(--nav2)))',
+                                }}
                             >
                                 <span>c</span>
                                 <span>
@@ -109,6 +117,10 @@ export default function RootLayout({ children }) {
                                 className="sublink"
                                 href="/interview"
                                 prefetch={true}
+                                style={{
+                                    transform:
+                                        'translateX(calc(var(--nav3x) * var(--nav_unit) + var(--nav3)))',
+                                }}
                             >
                                 <span>i</span>
                                 <span>
@@ -121,6 +133,10 @@ export default function RootLayout({ children }) {
                                 className="sublink"
                                 href="/artistTalk"
                                 prefetch={true}
+                                style={{
+                                    transform:
+                                        'translateX(calc(var(--nav4x) * var(--nav_unit) + var(--nav4)))',
+                                }}
                             >
                                 <span>a</span>
                                 <span>
@@ -139,6 +155,10 @@ export default function RootLayout({ children }) {
                                 className="sublink"
                                 href="/instanceRepository"
                                 prefetch={true}
+                                style={{
+                                    transform:
+                                        'translateX(calc(var(--nav5x) * var(--nav_unit) + var(--nav5)))',
+                                }}
                             >
                                 <span>i</span>
                                 <span>
@@ -152,7 +172,13 @@ export default function RootLayout({ children }) {
                                     <span className="des mark">y</span>
                                 </span>
                             </Link>
-                            <button className="sublink">
+                            <button
+                                className="sublink"
+                                style={{
+                                    transform:
+                                        'translateX(calc(var(--nav6x) * var(--nav_unit) + var(--nav6)))',
+                                }}
+                            >
                                 <span id="modelonclick_">m</span>
                                 <span id="modelonclick">
                                     mo

@@ -7,6 +7,19 @@
     --border_w: 1.8px;
     --purple: #796e7a;
     --white: #e8efef;
+    --nav_translate_var: 0px;
+    --nav1: calc(var(--nav_translate_var) * 1);
+    --nav2: calc(var(--nav_translate_var) * 1.2);
+    --nav3: calc(var(--nav_translate_var) * 1.4);
+    --nav4: calc(var(--nav_translate_var) * 1.6);
+    --nav5: calc(var(--nav_translate_var) * 1.8);
+    --nav6: calc(var(--nav_translate_var) * 2);
+    --nav1x: 0;
+    --nav2x: 0;
+    --nav3x: 0;
+    --nav4x: 0;
+    --nav5x: 0;
+    --nav6x: 0;
 }
 
 html,
@@ -362,7 +375,121 @@ section #videoload {
     align-items: center;
     word-break: break-all;
 }
+section #videoload::before {
+    content: '#AEgisHexLigaturesaestheticArtefact';
+    position: relative;
+    top: -1.5rem;
+}
+section #videoload.play::before {
+    content: '#AEgisHexLigaturesaestheticArtefact';
+    position: relative;
+    top: -1.5rem;
+    animation: loading 1s infinite alternate;
+}
 
+@keyframes loading {
+    0% {
+        content: '#AE';
+    }
+    2.8% {
+        content: '#AEg';
+    }
+    5.6% {
+        content: '#AEgi';
+    }
+    8.4% {
+        content: '#AEgis';
+    }
+    11.2% {
+        content: '#AEgisH';
+    }
+    14% {
+        content: '#AEgisHe';
+    }
+    16.8% {
+        content: '#AEgisHex';
+    }
+    19.6% {
+        content: '#AEgisHexL';
+    }
+    22.4% {
+        content: '#AEgisHexLi';
+    }
+    25.2% {
+        content: '#AEgisHexLig';
+    }
+    28% {
+        content: '#AEgisHexLiga';
+    }
+    30.8% {
+        content: '#AEgisHexLigat';
+    }
+    33.6% {
+        content: '#AEgisHexLigatu';
+    }
+    36.4% {
+        content: '#AEgisHexLigatur';
+    }
+    39.2% {
+        content: '#AEgisHexLigature';
+    }
+    42% {
+        content: '#AEgisHexLigatures';
+    }
+    44.8% {
+        content: '#AEgisHexLigaturesa';
+    }
+    47.6% {
+        content: '#AEgisHexLigaturesae';
+    }
+    50.4% {
+        content: '#AEgisHexLigaturesaes';
+    }
+    53.2% {
+        content: '#AEgisHexLigaturesaest';
+    }
+    56% {
+        content: '#AEgisHexLigaturesaesth';
+    }
+    58.8% {
+        content: '#AEgisHexLigaturesaesthe';
+    }
+    61.6% {
+        content: '#AEgisHexLigaturesaesthet';
+    }
+    64.4% {
+        content: '#AEgisHexLigaturesaestheti';
+    }
+    67.2% {
+        content: '#AEgisHexLigaturesaesthetic';
+    }
+    70% {
+        content: '#AEgisHexLigaturesaestheticA';
+    }
+    72.8% {
+        content: '#AEgisHexLigaturesaestheticAr';
+    }
+    75.6% {
+        content: '#AEgisHexLigaturesaestheticArt';
+    }
+    78.4% {
+        content: '#AEgisHexLigaturesaestheticArte';
+    }
+    81.2% {
+        content: '#AEgisHexLigaturesaestheticArtef';
+    }
+    84% {
+        content: '#AEgisHexLigaturesaestheticArtefa';
+    }
+    86.8% {
+        content: '#AEgisHexLigaturesaestheticArtefac';
+    }
+    89.6% {
+        content: '#AEgisHexLigaturesaestheticArtefact';
+    }
+}
+
+/*
 section #videoload.play span:first-child {
     animation: loading 1s infinite;
 }
@@ -372,6 +499,7 @@ section #videoload.play span:nth-child(2) {
 section #videoload.play span:nth-child(3) {
     animation: loading 1s infinite 0.2s;
 }
+
 
 @keyframes loading {
     0% {
@@ -384,6 +512,7 @@ section #videoload.play span:nth-child(3) {
         font-variation-settings: 'wght' 0;
     }
 }
+*/
 
 section :is(.flex, .flex_sta, .flex_end) {
     display: flex;
