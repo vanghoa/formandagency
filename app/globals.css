@@ -144,6 +144,10 @@ nav :is(a, button) {
     border: 0px;
 }
 
+#logoouter {
+    width: fit-content;
+}
+
 nav #nav_handle {
     width: var(--nav_handle_size);
     height: var(--nav_handle_size);
@@ -207,7 +211,7 @@ nav .sublink > * {
     z-index: 2;
 }
 
-nav :is(.sublink, #logo2) span.mark {
+nav :is(.sublink, #logo2, #logo1) span.mark {
     font-kerning: none;
     transition: font-variation-settings 0.2s;
     font-variation-settings: 'wght' 0;
@@ -274,7 +278,7 @@ nav .sublink.dropdown > .model:nth-child(n + 3) > span:first-child {
 nav.anim :is(.sublink, #logo2) span.mark.alt,
 nav.small #logo2 span,
 nav.small #logo2,
-nav #logo1 {
+nav #logo1 span.mark.asc {
     font-variation-settings: 'wght' 100;
 }
 
@@ -709,6 +713,14 @@ section .image img {
         font-size: 16px; /* control */
     }
 
+    nav {
+        transition: width 0.4s;
+    }
+
+    nav #nav_handle {
+        transition: left 0.4s;
+    }
+
     #togglelig,
     section,
     #ontransitionend {
@@ -740,11 +752,13 @@ nav:not(.small) #logoouter.logo2.underline * {
 }
 
 @media (hover: hover) and (pointer: fine) {
+    /*
     nav :is(.sublink, #logo2) > *:hover,
     #logo1:hover ~ #logo2 > * {
         text-decoration: underline;
         text-decoration-color: var(--purple);
     }
+    */
 
     nav.small #logo2:hover > *,
     nav.small #logo1:hover ~ #logo2 > * {
@@ -756,7 +770,33 @@ nav:not(.small) #logoouter.logo2.underline * {
         text-decoration: underline;
     }
 
+    /*
     nav #logoouter.logo2:hover * {
         text-decoration: underline;
+    }
+*/
+    nav .sublink > :nth-child(2):hover > .mark,
+    nav #logoouter:hover .mark {
+        font-variation-settings: 'wght' 50 !important;
+    }
+
+    nav .dropdown > :nth-child(n + 2) span {
+        transition: font-variation-settings 0.2s;
+    }
+
+    nav .sublink > :first-child:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--purple);
+    }
+
+    section a {
+        transition: font-variation-settings 0.3s;
+        width: fit-content;
+    }
+
+    section a:hover,
+    section a:hover span,
+    nav .dropdown > :nth-child(n + 2):hover span {
+        font-variation-settings: 'wght' 20 !important;
     }
 }

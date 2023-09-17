@@ -70,7 +70,7 @@ let nav_trans_var = 0;
                 nav_left = event.rect.left > 175 ? event.rect.left : 175;
             }
             nav_trans_var +=
-                event.delta.x > 0 ? event.delta.x / 1.7 : event.delta.x / 2.5;
+                event.delta.x > 0 ? event.delta.x / 1.6 : event.delta.x / 2.5;
             setprop('--nav_left_max', `${nav_left}px`);
             setprop('--nav_top', `${event.rect.top}px`);
             setprop('--nav_translate_var', `${nav_trans_var}px`);

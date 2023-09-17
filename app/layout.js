@@ -56,7 +56,8 @@ export default function RootLayout({ children }) {
                                     href="/"
                                     prefetch={true}
                                 >
-                                    <br></br>&nbsp; form&amp;
+                                    <br></br>&nbsp;{' '}
+                                    <span className="asc mark">f</span>orm&amp;
                                 </Link>
                                 <Link
                                     id="logo2"
@@ -83,7 +84,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(calc(var(--nav1x) * var(--nav_unit) + var(--nav1)))',
+                                        'translateX(max(calc(var(--nav1x) * var(--nav_unit) + var(--nav1)),0px))',
                                 }}
                             >
                                 <span>a</span>
@@ -99,7 +100,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(calc(var(--nav2x) * var(--nav_unit) + var(--nav2)))',
+                                        'translateX(max(calc(var(--nav2x) * var(--nav_unit) + var(--nav2)),0px))',
                                 }}
                             >
                                 <span>c</span>
@@ -119,7 +120,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(calc(var(--nav3x) * var(--nav_unit) + var(--nav3)))',
+                                        'translateX(max(calc(var(--nav3x) * var(--nav_unit) + var(--nav3)),0px))',
                                 }}
                             >
                                 <span>i</span>
@@ -135,7 +136,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(calc(var(--nav4x) * var(--nav_unit) + var(--nav4)))',
+                                        'translateX(max(calc(var(--nav4x) * var(--nav_unit) + var(--nav4)),0px))',
                                 }}
                             >
                                 <span>a</span>
@@ -157,7 +158,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(calc(var(--nav5x) * var(--nav_unit) + var(--nav5)))',
+                                        'translateX(max(calc(var(--nav5x) * var(--nav_unit) + var(--nav5)),0px))',
                                 }}
                             >
                                 <span>i</span>
@@ -176,7 +177,7 @@ export default function RootLayout({ children }) {
                                 className="sublink"
                                 style={{
                                     transform:
-                                        'translateX(calc(var(--nav6x) * var(--nav_unit) + var(--nav6)))',
+                                        'translateX(max(calc(var(--nav6x) * var(--nav_unit) + var(--nav6)),0px))',
                                 }}
                             >
                                 <span id="modelonclick_">m</span>
