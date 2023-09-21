@@ -99,7 +99,7 @@ CREDITS
             <ServerRender
                 fontsz={'0.75em'}
                 text={`
-                Presented by:
+                Presented by: 
             `}
                 mwidth={800}
             ></ServerRender>
