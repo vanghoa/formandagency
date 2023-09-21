@@ -91,7 +91,11 @@ CREDITS
             `}
                 mwidth={800}
             ></ServerRender>
-            <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
+            <ImageAbout
+                img={'NAC.webp'}
+                size={112}
+                wrappersz={800}
+            ></ImageAbout>
             <ServerRender
                 fontsz={'0.75em'}
                 text={`
@@ -99,7 +103,7 @@ CREDITS
             `}
                 mwidth={800}
             ></ServerRender>
-            <ImageAbout img={'YW.png'} size={150} wrappersz={800}></ImageAbout>
+            <ImageAbout img={'YW.webp'} size={112} wrappersz={800}></ImageAbout>
             <br></br>
             <ServerRender
                 text={'ABOUT THE ARTIST'}

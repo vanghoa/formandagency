@@ -33,7 +33,11 @@ export default function subpage() {
                 class_="arttalk"
             ></ServerRender>
             <br></br>
-            <ImageAbout img={'NTU.png'} size={150} wrappersz={850}></ImageAbout>
+            <ImageAbout
+                img={'NTU.webp'}
+                size={112}
+                wrappersz={850}
+            ></ImageAbout>
             <br></br>
             <br></br>
             <br></br>
