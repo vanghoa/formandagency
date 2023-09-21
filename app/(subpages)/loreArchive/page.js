@@ -18,8 +18,12 @@ const fetchNotion = async () => {
 export default async function subpage() {
     const { message: data } = await fetchNotion();
     const mwidth = 1000;
-    const title = `Instance Repository
-    (Work in Progress)`;
+    const title = `Lore Archive${
+        data.length <= 0
+            ? `
+    (Work in Progress)`
+            : ''
+    }`;
 
     return (
         <>
@@ -34,6 +38,8 @@ export default async function subpage() {
             <br></br>
             <div className="IR_flex">
                 {data.map(({ edit, create, vimeo, des }) => {
+                    edit = edit ? edit : consoleerr('last edit time');
+                    create = create ? create : consoleerr('creation time');
                     return (
                         <div key={create} className="flex_item">
                             <iframe
@@ -75,4 +81,10 @@ export default async function subpage() {
             <RightPanel no={5}></RightPanel>
         </>
     );
+}
+
+function consoleerr(txt) {
+    const rt = `missing info ${txt}`;
+    console.log(rt);
+    return rt;
 }

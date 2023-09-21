@@ -21,9 +21,6 @@ export default async function Subpage() {
     Accompanying the sculptures is a real-time livestream projection of a digital environment in which the agents react not only with each other, but with the presence of visitors in real time, offering a contextual basis of the agents in their native habitat.
 
     The exhibition in its entirety takes on the sculptures as portals to the interior life of possible non-human entities that may well point towards other dynamic systems, and how we may think through their hybrid natures, to form new and emergent modes of understanding intelligences.
-
-    Supported by:
-    National Arts Council Singapore
     `,
     ];
     const txt2 = [
@@ -87,11 +84,18 @@ CREDITS
                     ></ServerRender>
                 );
             })}
+            <ServerRender
+                fontsz={'0.75em'}
+                text={`
+                Supported by:
+            `}
+                mwidth={800}
+            ></ServerRender>
             <ImageAbout img={'NAC.png'} size={150} wrappersz={800}></ImageAbout>
             <ServerRender
+                fontsz={'0.75em'}
                 text={`
                 Presented by:
-            Yeo Workshop
             `}
                 mwidth={800}
             ></ServerRender>

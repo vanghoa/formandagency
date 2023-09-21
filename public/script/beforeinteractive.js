@@ -190,6 +190,38 @@ let posarr = [
     {
         nln: {
             out: {
+                asc: [
+                    [1, 0],
+                    [54, 1],
+                ],
+                des: [],
+            },
+            in: {
+                asc: [1, 13, 38, 41, 54, 60, 63],
+                des: [13, 41, 63, 65],
+            },
+            tong: 80,
+        },
+        elem: {},
+        text: 'lore archive',
+        ascspan: [],
+        desspan: [],
+        ln: {
+            out: {
+                asc: [[1, 0]],
+                des: [],
+            },
+            in: {
+                asc: [6, 9, 22, 28, 31],
+                des: [13],
+            },
+            tong: 48,
+        },
+    },
+    /*
+    {
+        nln: {
+            out: {
                 asc: [],
                 des: [
                     [21, 0],
@@ -224,6 +256,7 @@ let posarr = [
             tong: 71,
         },
     },
+    */
     {
         nln: {
             out: {
@@ -640,7 +673,7 @@ function nav_resize_handle() {
         navw > 200 &&
         posarr[0].nln_.tong < navw &&
         navw > (innerWidth / nav_unit) * (1 / 3);
-    nav_logoouter.classList[logocheck ? 'add' : 'remove']('logo2');
+    nav.classList[logocheck ? 'add' : 'remove']('logo2');
     for (let i = 0; i < ascdesarr.length; i++) {
         ascdesarr[i].classList.remove('alt');
     }
@@ -669,6 +702,8 @@ function nav_resize_handle() {
         let objcurr_as = posarr[index][prefix.curr].out.asc;
         //
         let ascORdes = objcurr_as.length > 0 && Math.random() > 0.5;
+        let ascForce = false;
+        ascORdes = objlast.length > 0 ? ascORdes : (ascForce = true);
         let inasc, outasc, indes, outdes, ascpass;
         if (ascORdes) {
             [ascpass, inasc, outasc] = outinasc_(
@@ -676,7 +711,9 @@ function nav_resize_handle() {
                 objcurr_as,
                 navw,
                 objcurrw,
-                tongtrans
+                tongtrans,
+                !ascForce
+                //index == 5
             );
             if (!ascpass) {
                 [indes, outdes] = outindes();
@@ -765,6 +802,7 @@ function outinasc_(
     objcurrw,
     tongtrans,
     ascchk = true
+    //console_ = false
 ) {
     let index_end = null,
         index_start = null,
@@ -819,6 +857,7 @@ function outinasc_(
         }
     }
     //return
+    //if (console_) console.log(`${index_end} ${index_start}`);
     return [
         true,
         objlast_as[getRandomInteger(index_end, index_start)],
@@ -833,7 +872,7 @@ async function modeldrop_template(check, callback) {
         setprop('--nav_left_max', `175px`);
     }
     if (modeldrop_papa.classList.contains('dropdown') == check) {
-        for (let i = 14; i <= 19; i++) {
+        for (let i = 17; i <= ascdesarr.length - 1; i++) {
             ascdesarr[i].classList.remove('alt');
         }
         let prefix =

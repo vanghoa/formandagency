@@ -3,7 +3,7 @@
 const main = $('main');
 const nav_handle = $('#nav_handle');
 const nav = $('nav');
-const nav_logo = $$('.logo');
+const nav_logo = $$('#logoouter .logo');
 const nav_logoouter = $('#logoouter');
 const nav_handle_size = parseInt(getprop('--nav_handle_size'));
 const nav_sublinks = $$('.sublink');

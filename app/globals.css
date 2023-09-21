@@ -38,7 +38,7 @@ body {
 html,
 body,
 nav {
-    font-size: 23px; /* control */
+    font-size: 20px; /* control */
 }
 
 * {
@@ -77,7 +77,7 @@ main {
     transition: font-variation-settings 0.2s, line-height 0.2s;
     font-variation-settings: 'wght' 100;
     cursor: pointer;
-    font-size: 0.65rem;
+    font-size: 0.77rem; /* control body text */
 }
 
 #togglelig span {
@@ -185,7 +185,7 @@ nav .logo {
     transition: left 0.5s;
     display: block;
     width: 100%;
-    font-size: 0.65rem;
+    font-size: 0.77rem; /* control body text */
     height: 6em;
 }
 
@@ -291,6 +291,10 @@ nav.small #logo2 span.mark {
     animation-duration: 0.5s;
 }
 
+nav.small :is(#logoouter, #sobelow) {
+    width: 0.1em;
+}
+
 @keyframes logo2 {
     0% {
         font-variation-settings: 'wght' 0;
@@ -301,11 +305,11 @@ nav.small #logo2 span.mark {
 }
 
 /* */
-nav .logo2 .logo {
+nav.logo2 .logo {
     display: inline-block;
 }
 
-nav .logo2 + [href='/about'] {
+nav.logo2 #logoouter + [href='/about'] {
     margin-top: 2.6em;
 }
 
@@ -318,7 +322,7 @@ section {
     overflow: hidden;
     z-index: 0;
     border: solid var(--border_w) var(--purple);
-    font-size: 0.65rem;
+    font-size: 0.77rem; /* control body text */
     position: relative;
 
     --lh: 1;
@@ -690,13 +694,13 @@ section .image img {
     html,
     body,
     nav {
-        font-size: 20px; /* control */
+        font-size: 18px; /* control */
     }
 
     #togglelig,
     section,
     #ontransitionend {
-        font-size: 0.72rem;
+        font-size: 0.8rem; /* control body text */
     }
 }
 
@@ -710,7 +714,7 @@ section .image img {
     html,
     body,
     nav {
-        font-size: 16px; /* control */
+        font-size: 15px; /* control */
     }
 
     nav {
@@ -724,7 +728,7 @@ section .image img {
     #togglelig,
     section,
     #ontransitionend {
-        font-size: 0.8rem;
+        font-size: 0.8rem; /* control body text */
     }
 
     section .tay .wrapper,
@@ -746,9 +750,32 @@ nav:not(.small) .underline #logo2 > *,
 nav:not(.small) .underline #logo1 ~ #logo2 > *,
 nav.small .underline #logo2 .mark.y,
 nav.small .underline #logo1 ~ #logo2 .mark.y,
-nav:not(.small) #logoouter.logo2.underline * {
+nav:not(.small).logo2 #logoouter.underline * {
     text-decoration: underline;
     text-decoration-color: var(--purple);
+}
+
+/* so below */
+nav #overflow #sobelow {
+    position: absolute;
+    left: 0;
+    top: -2.8em;
+    padding: var(--nav_padding);
+    pointer-events: none;
+}
+
+nav #overflow #sobelow * {
+    font-variation-settings: 'wght' 50 !important;
+}
+
+nav #overflow #sobelow > * {
+    line-height: 0;
+    height: 3em;
+    display: inline-block;
+}
+
+nav:not(.logo2) #sobelow #logo1 {
+    display: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -771,7 +798,7 @@ nav:not(.small) #logoouter.logo2.underline * {
     }
 
     /*
-    nav #logoouter.logo2:hover * {
+    nav.logo2 #logoouter:hover * {
         text-decoration: underline;
     }
 */

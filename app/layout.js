@@ -49,6 +49,29 @@ export default function RootLayout({ children }) {
                     <nav>
                         <div id="nav_handle"></div>
                         <div id="overflow">
+                            <div id="sobelow">
+                                <Link
+                                    id="logo1"
+                                    className="logo"
+                                    href="/"
+                                    prefetch={true}
+                                >
+                                    <br></br>&nbsp; form&amp;
+                                </Link>
+                                <Link
+                                    id="logo2"
+                                    className="logo"
+                                    href="/"
+                                    prefetch={true}
+                                >
+                                    <span>
+                                        agency
+                                        <br></br>
+                                        <br></br>
+                                    </span>
+                                    <span>agency</span>
+                                </Link>
+                            </div>
                             <div id="logoouter">
                                 <Link
                                     id="logo1"
@@ -84,7 +107,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(max(calc(var(--nav1x) * var(--nav_unit) + var(--nav1)),0px))',
+                                        'translateX(max(calc(var(--nav1x) * var(--nav_unit) + var(--nav1)),-3em))',
                                 }}
                             >
                                 <span>a</span>
@@ -100,7 +123,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(max(calc(var(--nav2x) * var(--nav_unit) + var(--nav2)),0px))',
+                                        'translateX(max(calc(var(--nav2x) * var(--nav_unit) + var(--nav2)),-3em))',
                                 }}
                             >
                                 <span>c</span>
@@ -120,7 +143,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(max(calc(var(--nav3x) * var(--nav_unit) + var(--nav3)),0px))',
+                                        'translateX(max(calc(var(--nav3x) * var(--nav_unit) + var(--nav3)),-3em))',
                                 }}
                             >
                                 <span>i</span>
@@ -136,7 +159,7 @@ export default function RootLayout({ children }) {
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(max(calc(var(--nav4x) * var(--nav_unit) + var(--nav4)),0px))',
+                                        'translateX(max(calc(var(--nav4x) * var(--nav_unit) + var(--nav4)),-3em))',
                                 }}
                             >
                                 <span>a</span>
@@ -154,30 +177,24 @@ export default function RootLayout({ children }) {
                             </Link>
                             <Link
                                 className="sublink"
-                                href="/instanceRepository"
+                                href="/loreArchive"
                                 prefetch={true}
                                 style={{
                                     transform:
-                                        'translateX(max(calc(var(--nav5x) * var(--nav_unit) + var(--nav5)),0px))',
+                                        'translateX(max(calc(var(--nav5x) * var(--nav_unit) + var(--nav5)),-3em))',
                                 }}
                             >
-                                <span>i</span>
+                                <span>l</span>
                                 <span>
-                                    ins
-                                    <span className="des mark">t</span>
-                                    ance re
-                                    <span className="des mark">p</span>
-                                    osi
-                                    <span className="des mark">t</span>
-                                    or
-                                    <span className="des mark">y</span>
+                                    <span className="asc mark">l</span>ore arc
+                                    <span className="asc mark">h</span>ive
                                 </span>
                             </Link>
                             <button
                                 className="sublink"
                                 style={{
                                     transform:
-                                        'translateX(max(calc(var(--nav6x) * var(--nav_unit) + var(--nav6)),0px))',
+                                        'translateX(max(calc(var(--nav6x) * var(--nav_unit) + var(--nav6)),-3em))',
                                 }}
                             >
                                 <span id="modelonclick_">m</span>
