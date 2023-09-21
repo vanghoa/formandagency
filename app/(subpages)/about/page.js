@@ -108,7 +108,7 @@ CREDITS
             ></ServerRender>
             <ImageAbout
                 img={'brandontay.jpg'}
-                size={300}
+                size={180}
                 wrappersz={1000}
                 justify="flex-start"
                 class_="model_img"
