@@ -315,6 +315,7 @@ function endResizeendDrag() {
     nav_trans_var == 0 ? setprop('--nav_translate_var', '0px') : {};
     nav_trans_var = 0;
     let navw = Math.floor(nav_trans.getBoundingClientRect().width / nav_unit);
+    //fuck you vercel
     let logocheck =
         navw > 200 &&
         posarr[0].nln_.tong < navw &&
