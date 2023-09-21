@@ -314,6 +314,12 @@ const debounceLeft = {
 function endResizeendDrag() {
     nav_trans_var == 0 ? setprop('--nav_translate_var', '0px') : {};
     nav_trans_var = 0;
+    let navw = Math.floor(nav_trans.getBoundingClientRect().width / nav_unit);
+    let logocheck =
+        navw > 200 &&
+        posarr[0].nln_.tong < navw &&
+        navw > (innerWidth / nav_unit) * (1 / 3);
+    nav.classList[logocheck ? 'add' : 'remove']('logo2');
     if (
         nav_trans.getBoundingClientRect().width <
         0.6 * nav_fontsz + nav_padding * 2
@@ -330,7 +336,7 @@ function endResizeendDrag() {
                 ? 'add'
                 : 'remove'
         ]('medium');
-        nav_resize_handle();
+        nav_resize_handle(logocheck, navw);
         if (posarr[nav_numth + 1].elem.classList.contains('dropdown')) {
             modeldrop_template(true, () => {});
         }
@@ -666,14 +672,8 @@ async function rightPanel() {
     }
 }
 
-function nav_resize_handle() {
+function nav_resize_handle(logocheck, navw) {
     let tongtrans = 0;
-    let navw = Math.floor(nav_trans.getBoundingClientRect().width / nav_unit);
-    let logocheck =
-        navw > 200 &&
-        posarr[0].nln_.tong < navw &&
-        navw > (innerWidth / nav_unit) * (1 / 3);
-    nav.classList[logocheck ? 'add' : 'remove']('logo2');
     for (let i = 0; i < ascdesarr.length; i++) {
         ascdesarr[i].classList.remove('alt');
     }
