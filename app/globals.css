@@ -781,6 +781,7 @@ nav:not(.logo2) #sobelow #logo1 {
 /* swiper */
 #main .swiper-slide {
     height: auto;
+    line-height: 0;
 }
 
 #main .swiper-button-prev::after {

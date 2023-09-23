@@ -28,12 +28,12 @@ export default function SwiperImage({ img }) {
                         <Image
                             src={`/image/slideshow/Model ${img}/${k + 1}.jpg`}
                             alt="bip"
-                            width={700}
-                            height={875}
+                            width={500}
+                            height={img == 'E' ? 700 : 625}
                             quality={100}
                             style={{
                                 width: '400px',
-                                height: '100%',
+                                height: 'auto',
                                 maxWidth: '100%',
                             }}
                             priority={true}
