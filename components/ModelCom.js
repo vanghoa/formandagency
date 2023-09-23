@@ -2,6 +2,7 @@ import Image from 'next/image';
 import RightPanel from './RightPanel';
 import ServerRender from './ServerRender';
 import Link from 'next/link';
+import SwiperImage from './SwiperImage';
 
 export const dynamic = 'force-static';
 export const fetchCache = 'force-cache';
@@ -17,28 +18,14 @@ export default function ModelCom({ img, title, spec, des, next, last, no }) {
                 justify={'flex-start'}
                 class_="title"
             ></ServerRender>
-            <div
-                className="image model_img"
-                style={{
-                    height: 'auto',
-                    width: '100%',
-                }}
-            >
-                <Image
-                    src={`/image/${img}.jpg`}
-                    alt="bip"
-                    width={400}
-                    height={400}
-                    style={{
-                        width: '400px',
-                        height: 'auto',
-                        maxWidth: '100%',
-                    }}
-                    priority={true}
-                ></Image>
-            </div>
+            <SwiperImage img={img}></SwiperImage>
             <br></br>
-            <ServerRender text={spec} mwidth={800}></ServerRender>
+            <br></br>
+            <ServerRender
+                fontsz={'0.75em'}
+                text={spec}
+                mwidth={800}
+            ></ServerRender>
             <br></br>
             <ServerRender text={des} mwidth={800}></ServerRender>
             <br></br>

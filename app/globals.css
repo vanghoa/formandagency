@@ -778,6 +778,29 @@ nav:not(.logo2) #sobelow #logo1 {
     display: none;
 }
 
+/* swiper */
+#main .swiper-slide {
+    height: auto;
+}
+
+#main .swiper-button-prev::after {
+    content: '<';
+    font-family: var(--asabovesobelow);
+    color: var(--white);
+    font-size: 1.2rem;
+    top: 0.5em;
+    position: relative;
+}
+
+#main .swiper-button-next::after {
+    content: '>';
+    font-family: var(--asabovesobelow);
+    color: var(--white);
+    font-size: 1.2rem;
+    top: 0.5em;
+    position: relative;
+}
+
 @media (hover: hover) and (pointer: fine) {
     /*
     nav :is(.sublink, #logo2) > *:hover,
