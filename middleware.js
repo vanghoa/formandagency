@@ -10,6 +10,7 @@ const allowedOrigins = [
 
 export function middleware(req) {
     // retrieve the current response
+    console.log('middleware');
     const res = NextResponse.next();
 
     // retrieve the HTTP "Origin" header
