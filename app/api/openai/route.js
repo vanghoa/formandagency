@@ -17,7 +17,7 @@ const openai = new OpenAI({
     apiKey: process.env['OPEN_AI_API_KEY'],
 });
 
-export async function GET(request) {
+export async function POST(request) {
     try {
         const { messages } = await request.json();
         console.log(messages);
