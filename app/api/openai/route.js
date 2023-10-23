@@ -44,5 +44,5 @@ export async function POST(request) {
 }
 
 export async function OPTIONS() {
-    return new Response(null);
+    return new Response(null, CORSheader);
 }
