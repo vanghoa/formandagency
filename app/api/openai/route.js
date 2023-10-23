@@ -18,19 +18,16 @@ export async function POST(request) {
             messages: [...messages],
             max_tokens: 300,
         });
-        return new Response(
-            { jsonBody: { completion: response } },
-            {
-                status: 200,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods':
-                        'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers':
-                        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-                },
-            }
-        );
+        return new Response(JSON.stringify({ completion: response }), {
+            status: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods':
+                    'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers':
+                    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+            },
+        });
     } catch (error) {
         if (error instanceof OpenAI.APIError) {
             console.error(error.status); // e.g. 401
@@ -42,9 +39,7 @@ export async function POST(request) {
             console.log(error);
         }
         return new Response(
-            {
-                jsonBody: { error: true, msg: error.message },
-            },
+            JSON.stringify({ error: true, msg: error.message }),
             {
                 status: 200,
                 headers: {
@@ -62,19 +57,16 @@ export async function POST(request) {
 export async function OPTIONS(request) {
     try {
         const allowedOrigin = request.headers.get('origin');
-        return new Response(
-            { jsonBody: { error: true, msg: 'OPTIONS' } },
-            {
-                status: 200,
-                headers: {
-                    'Access-Control-Allow-Origin': allowedOrigin || '*',
-                    'Access-Control-Allow-Methods':
-                        'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers':
-                        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-                },
-            }
-        );
+        return new Response(JSON.stringify({ error: true, msg: 'OPTIONS' }), {
+            status: 200,
+            headers: {
+                'Access-Control-Allow-Origin': allowedOrigin || '*',
+                'Access-Control-Allow-Methods':
+                    'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers':
+                    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+            },
+        });
     } catch (error) {
         if (error instanceof OpenAI.APIError) {
             console.error(error.status); // e.g. 401
@@ -86,9 +78,7 @@ export async function OPTIONS(request) {
             console.log(error);
         }
         return new Response(
-            {
-                jsonBody: { error: true, msg: error.message },
-            },
+            JSON.stringify({ error: true, msg: error.message }),
             {
                 status: 200,
                 headers: {
