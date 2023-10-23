@@ -28,7 +28,7 @@ export async function POST(request) {
         });
         return NextResponse.json(
             { jsonBody: { completion: response } },
-            { headers: corsHeaders }
+            { status: 200, headers: corsHeaders }
         );
     } catch (error) {
         if (error instanceof OpenAI.APIError) {
@@ -44,7 +44,7 @@ export async function POST(request) {
             {
                 jsonBody: { error: true, msg: error.message },
             },
-            { headers: corsHeaders }
+            { status: 200, headers: corsHeaders }
         );
     }
 }
