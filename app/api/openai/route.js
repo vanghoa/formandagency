@@ -37,7 +37,7 @@ export async function GET(request) {
             console.error(error.code); // e.g. 'invalid_api_key'
             console.error(error.type); // e.g. 'invalid_request_error'
         } else {
-            // Non-API error
+            // Non-API error fuck
             console.log(error);
         }
         return NextResponse.json(
