@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 // the list of all allowed origins
 const allowedOrigins = [
     'http://localhost:3000',
-    'https://vanghoa.github.io/',
+    'https://vanghoa.github.io',
     'http://localhost:5501',
     'http://127.0.0.1:5501',
 ];
