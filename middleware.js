@@ -37,7 +37,7 @@ export function middleware(req) {
         return res;
     } else {
         return NextResponse.json(
-            { message: 'Aha! Not so fast.' },
+            { message: 'Aha! Not so fast. wtf is wrong' },
             { status: 401 }
         );
     }
