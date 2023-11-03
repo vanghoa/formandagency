@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 // the list of all allowed origins
 const allowedOrigins = [
-    'http://localhost:3000',
+    //'http://localhost:3000',
     'https://vanghoa.github.io',
     'http://localhost:5501',
     'http://127.0.0.1:5501',
@@ -10,7 +10,7 @@ const allowedOrigins = [
 
 export function middleware(req) {
     // retrieve the current response
-    console.log('middleware');
+    console.log('middleware <3');
     const res = NextResponse.next();
 
     // retrieve the HTTP "Origin" header
@@ -30,6 +30,11 @@ export function middleware(req) {
         res.headers.append(
             'Access-Control-Allow-Headers',
             'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+        );
+    } else {
+        return NextResponse.json(
+            { message: 'Aha! Not so fast.' },
+            { status: 401 }
         );
     }
 
