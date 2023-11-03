@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-// the list of all allowed origins
+// the list of all allowed origins dit con me
 const allowedOrigins = [
     //'http://localhost:3000',
     'https://vanghoa.github.io',
